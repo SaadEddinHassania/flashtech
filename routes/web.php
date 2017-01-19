@@ -12,9 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/test', function () {
-    return \App\Models\Product::findOrFail(1)->valuesList();
-});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

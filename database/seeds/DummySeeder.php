@@ -12,23 +12,23 @@ class DummySeeder extends Seeder
      */
     public function run()
     {
-//        Category::create([
-//            'id'    =>  1,
-//            'name'  =>  'laptops'
-//        ]);
-//        Category::create([
-//            'id' => 2,
-//            'parent_id' => 1,
-//            'name'  =>  'lenovo'
-//        ]);
-//
-//        \App\Models\CategoryField::create([
-//            'id' => 1,
-//            'category_id' => 1,
-//            'field'  =>  'ram',
-//            'type'  =>  'string',
-//            'required'  =>true
-//        ]);
+        Category::create([
+            'id'    =>  1,
+            'name'  =>  'laptops'
+        ]);
+        Category::create([
+            'id' => 2,
+            'parent_id' => 1,
+            'name'  =>  'lenovo'
+        ]);
+
+        \App\Models\CategoryField::create([
+            'id' => 1,
+            'category_id' => 1,
+            'field'  =>  'ram',
+            'type'  =>  'string',
+            'required'  =>true
+        ]);
 
         \App\Models\Product::create([
             'id' => 1,

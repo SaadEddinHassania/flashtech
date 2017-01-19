@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call(VoyagerDatabaseSeeder::class);
-//        $this->seed('SettingsTableSeeder');
+        $this->call(VoyagerDatabaseSeeder::class);
+        $this->seed('SettingsTableSeeder');
         $this->call(DummySeeder::class);
 
     }
