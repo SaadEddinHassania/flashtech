@@ -13,6 +13,10 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function category_id(){
+        return $this->belongsTo(Category::class);
+    }
+
     public function fields(){
         $category = $this->category->parent_id==null?$this->category:$this->category->parent;
         return $category->fields();
