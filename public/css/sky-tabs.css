@@ -14,7 +14,6 @@
 	outline: none;
 	border: 0;
 	background: none;
-	padding-bottom:5px;
 }
 .sky-tabs {
 	position: relative;
@@ -90,7 +89,7 @@
 	list-style: none;
 	position: relative;
 	display: block;
-	font-size: 13px;
+	font-size: 16px;
 }
 .sky-tabs > ul > li {
 	position: absolute;
@@ -545,8 +544,6 @@
 }
 .sky-tabs .typography li {
 	position: relative;
-	margin-top: 5px;
-	padding-left: 20px;
 }
 .sky-tabs .typography li ul,
 .sky-tabs .typography li ol {
@@ -559,7 +556,6 @@
 	left: 0;
 	width: 4px;
 	height: 4px;
-	background: #333;
 }
 .sky-tabs .typography ol {
 	counter-reset: list1;
@@ -574,8 +570,9 @@
 }
 .sky-tabs .typography a {
 	color: darkorange;
-    font-size: .8em;
+    font-size: 14px;
     text-decoration: none;
+	    font-family: cairo;
 }
 .sky-tabs .typography a:hover {
 	text-decoration: none;
