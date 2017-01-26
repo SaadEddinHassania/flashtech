@@ -149,106 +149,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<h3 class="agileits-title">Our Products</h3>
 
 			<div class="sky-tabs sky-tabs-pos-left sky-tabs-anim-flip sky-tabs-response-to-icons">
-
-				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
-				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Solar energy</span></span></label>
-
-				<input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
-				<label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>Laptops</span></span></label>
-
-				<input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
-				<label for="sky-tab3"><span><span><i class="fa fa-cogs"></i>Mobiles</span></span></label>
-
-				<input type="radio" name="sky-tabs" id="sky-tab4" class="sky-tab-content-4">
-				<label for="sky-tab4"><span><span><i class="fa fa-globe"></i>Accesories</span></span></label>
-
+				@foreach($mainCategories as $key=> $mainCategory)
+					<input type="radio" name="sky-tabs" checked id="sky-tab{{$key+1}}" value="{{$mainCategory->id}}" class="sky-tab-content-{{$key+1}}">
+					<label for="sky-tab{{$key+1}}"><span><span><i class="fa fa-bolt"></i>{{ $mainCategory->name}}</span></span></label>
+				@endforeach
 				<ul>
-					<li class="sky-tab-content-1">
+				@foreach($mainCategories as $key=> $mainCategory)
+
+					<li class="sky-tab-content-{{$key+1}}">
 						<div class="typography">
 							<div class="container">
 								<div id="tabs" class="tabs">
 									<nav>
-										<ul>
-											<li><a href="#section-1"><span>SSSS</span></a></li>
-											<li><a href="#section-2"><span>DDDDD</span></a></li>
-											<li><a href="#section-3"><span>All</span></a></li>
+										<ul id="sub-categories">
+
 										</ul>
 									</nav>
-									<div class="content">
-										<section id="section-1">
-											<div class="typography">
-												<div  id="gallery" class="gallery">
-													<div class="gallery-grids-row">
-														<div class="col-md-4 gallery-grid">
-															<div class="wpf-demo-4">
-																<a href="images/g1.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-																	<img src="images/g1.jpg" alt=" " class="img-responsive" />
-																	<div class="view-caption">
-																		<p><a data-toggle="modal" data-target="#fill0">fill screen</a></p>
-																	</div>
-																</a>
-															</div>
-														</div>
-														<div class="col-md-4 gallery-grid">
-															<div class="wpf-demo-4">
-																<a href="images/g2.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-																	<img src="images/g2.jpg" alt=" " class="img-responsive" />
-																	<div class="view-caption">
-																		<p><a data-toggle="modal" data-target="#fill">fill screen</a></p>
-																	</div>
-																</a>
-															</div>
-														</div>
-														<div class="col-md-4 gallery-grid">
-															<div class="wpf-demo-4">
-																<a href="images/g3.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-																	<img src="images/g3.jpg" alt=" " class="img-responsive" />
-																	<div class="view-caption">
-																		<p><a data-toggle="modal" data-target="#fill2">fill screen</a></p>
-																	</div>
-																</a>
-															</div>
-														</div>
-														<div class="col-md-4 gallery-grid">
-															<div class="wpf-demo-4">
-																<a href="images/g4.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-																	<img src="images/g4.jpg" alt=" " class="img-responsive" />
-																	<div class="view-caption">
-																		<p><a data-toggle="modal" data-target="#fill3">fill screen</a></p>
-																	</div>
-																</a>
-															</div>
-														</div>
-														<div class="clearfix"> </div>
-													</div>
-													<script src="js/jzBox.js"></script>
-												</div>
-											</div>
-										</section>
-										<section id="section-2">
-											<div class="col-md-4 gallery-grid">
-												<div class="wpf-demo-4">
-													<a href="images/g4.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-														<img src="images/04.png" alt=" " class="img-responsive" />
-														<div class="view-caption">
-															<p><a data-toggle="modal" data-target="#fill3">fill screen</a></p>
-														</div>
-													</a>
-												</div>
-											</div>
-										</section>
-										<section id="section-3">
-											<div class="col-md-4 gallery-grid">
-												<div class="wpf-demo-4">
-													<a href="images/g4.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-														<img src="images/04.png" alt=" " class="img-responsive" />
-														<div class="view-caption">
-															<p><a data-toggle="modal" data-target="#fill3">fill screen</a></p>
-														</div>
-													</a>
-												</div>
-											</div>
-										</section>
+									<div class="content products">
 									</div><!-- /content -->
 								</div><!-- /tabs -->
 							</div>
@@ -256,679 +173,500 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<script>
                                 new CBPFWTabs( document.getElementById( 'tabs' ) );
 							</script>
-						</div>
-					</li>
-					<li class="sky-tab-content-2">
-						<div class="typography">
-							<div  id="gallery" class="gallery">
-								<div class="gallery-grids-row">
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g1.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g1.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill6">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g2.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g2.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill7">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g3.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g3.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill8">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g4.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g4.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill9">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g5.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g5.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-10">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g6.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g6.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-11">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<script src="js/jzBox.js"></script>
-							</div>
-						</div>
-					</li>
 
-					<li class="sky-tab-content-3">
-						<div class="typography">
-							<div  id="gallery" class="gallery">
-								<div class="gallery-grids-row">
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g1.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g1.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-12">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g2.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g2.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-13">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g3.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g3.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-14">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g4.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g4.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-15">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g5.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g5.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-16">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g6.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g6.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-17">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<script src="js/jzBox.js"></script>
-							</div>
-						</div>
-					</li>
+							<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+							<script>
+								$(document).ready(function() {
+									getSubCats = function ($val){
+										$.get(window.location.origin+'/sub-categories/'+$val
+												,function(data){
+													$('#sub-categories').html(data);
+													getProds ($('input[name=sub-cats]').val());
+												})
+									};
+									getSubCats($('input[name=sky-tabs]').val());
+									$("div.container").on('click','input[name=sky-tabs]',function (evt){ getSubCats($(this).val())});
 
-					<li class="sky-tab-content-4">
-						<div class="typography">
-							<div  id="gallery" class="gallery">
-								<div class="gallery-grids-row">
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g1.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g1.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-18">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g2.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g2.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-19">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g3.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g3.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-20">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g4.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g4.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-21">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g5.jpg" class="jzBoxLink item-hover" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-												<img src="images/g5.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-22">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col-md-4 gallery-grid">
-										<div class="wpf-demo-4">
-											<a href="images/g6.jpg" class="jzBoxLink item-hover" title="Sed tincidunt lorem sed velit fermentum lobortis eget.">
-												<img src="images/g6.jpg" alt=" " class="img-responsive" />
-												<div class="view-caption">
-													<p><a data-toggle="modal" data-target="#fill-23">fill screen</a></p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<script src="js/jzBox.js"></script>
-							</div>
+									getProds = function ($val){
+										$.get(window.location.origin+'/category-products/'+$val
+												,function(data){
+													$('.products').html(data);
+													$("ul.pagination a").on('click',function (evt){ getPage ($(this).data('url'))});
+													$("div.view-caption a").on('click',function (evt){
+														getProductModal ($(this).data('id'))});
+										})
+									};
+									$("div #tabs").on('click','input[name=sub-cats]',function (evt){ getProds ($(this).val())});
+
+									getPage = function ($val){
+										$.get($val
+												,function(data){
+													$('.products').html(data);
+													$("ul.pagination a").on('click',function (evt){
+														getPage ($(this).data('url'))});
+												})
+									};
+									$("ul.pagination a").on('click',function (evt){
+										getPage ($(this).data('url'))});
+
+									getProductModal = function ($val){
+										$.get(window.location.origin+'/product-modal/'+$val
+												,function(data){
+													$('#fill').html(data);
+												})
+									};
+									$("div.view-caption a").on('click',function (evt){
+										getProductModal ($(this).data('id'))});
+								});
+
+							</script>
+
 						</div>
 					</li>
+					@endforeach
 				</ul>
 			</div>
 		</div>
-		<div class="modal bnr-modal fade" id="fill0" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="modal bnr-modal fade" id="fill" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
+
 		</div>
-		<div class="modal bnr-modal fade" id="fill2" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill3" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill4" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill5" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill6" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill7" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill8" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill9" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-10" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-11" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-12" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-13" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-14" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-15" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-16" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-17" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-18" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-19" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-20" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-21" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-22" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal bnr-modal fade" id="fill-23" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content col-md-8">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
-						<div class="col-md-6">
-							<p><label>Price</label><label>-</label></p>
-							<p><label>Screen</label><label>-</label></p>
-							<p><label>Memory</label><label>-</label></p>
-							<p><label>Processor</label><label>-</label></p>
-							<p><label>Model</label><label>-</label></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		{{--<div class="modal bnr-modal fade" id="fill" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill2" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill3" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill4" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill5" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill6" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill7" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill8" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill9" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-10" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-11" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-12" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-13" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-14" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-15" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-16" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-17" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-18" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-19" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-20" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-21" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-22" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+		{{--<div class="modal bnr-modal fade" id="fill-23" role="dialog">--}}
+			{{--<div class="modal-dialog" role="document">--}}
+				{{--<div class="modal-content col-md-8">--}}
+					{{--<div class="modal-header">--}}
+						{{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+					{{--</div>--}}
+					{{--<div class="modal-body modal-spa">--}}
+						{{--<div class="col-md-6"><img src="images/g1.jpg" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>--}}
+						{{--<div class="col-md-6">--}}
+							{{--<p><label>Price</label><label>-</label></p>--}}
+							{{--<p><label>Screen</label><label>-</label></p>--}}
+							{{--<p><label>Memory</label><label>-</label></p>--}}
+							{{--<p><label>Processor</label><label>-</label></p>--}}
+							{{--<p><label>Model</label><label>-</label></p>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
 	</div>
 </div>
 <!-- //team -->

@@ -9,7 +9,11 @@ class Category extends Model
     protected $table = 'categories';
 
     public function parent(){
-        return $this->belongsTo(Category::class,'parent_id');
+        return $this->belongsTo(Category::class);
+    }
+
+    public function parent_id(){
+        return $this->belongsTo(Category::class);
     }
 
     public function children(){
@@ -18,6 +22,10 @@ class Category extends Model
 
     public function products(){
         return $this->hasMany(Product::class);
+    }
+
+    public function allProducts(){
+        return $this->hasManyThrough(Product::class,Category::class,'parent_id');
     }
 
     public function fields(){
