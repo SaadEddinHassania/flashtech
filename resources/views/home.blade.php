@@ -685,20 +685,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="page padding-bottom">
 						<div class="content_wrap">
 							<div class="left-panel">
+								@foreach($news as $newss)
 								<div class="panel">
 									<div class="content">
-										<p>Donec a nulla erat. Fusce molestie pellentesque est eget tincidunt. Pellentesque at arcu a arcu bibendum mattis at suscipit
-											nunc. Maecenas neque ante,  congue condimentum ipsum. Integer et enim a massa dictum congue. Curabitur tempor massa ac lectus
-											aliquet vitae hendrerit leo semper lorem ipsum dolor. <a data-toggle="modal" data-target="#more2">More</a></p>
+										<p>{{$newss->title}} <a data-toggle="modal" data-target="#more{{$newss->id}}">More</a></p>
 									</div>
 								</div>
+									@endforeach
 
-								<div class="content">
-									<p>Donec a nulla erat. Fusce molestie pellentesque est eget tincidunt.
-										Pellentesque at arcu a arcu bibendum mattis at suscipit nunc. Maecenas neque ante,  congue condimentum ipsum.
-										Integer et enim a massa dictum congue. Curabitur tempor massa ac lectus aliquet vitae hendrerit leo semper lorem ipsum dolor.
-										<a href="#" data-toggle="modal" data-target="#more3">More</a></p>
-								</div>
+
 							</div>
 							<!-- end of BOX WRAPPER -->
 						</div>
@@ -711,21 +706,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="content_wrap">
 							<div class="left-panel">
 								<div class="panel">
+									@foreach($feeds as $feed)
 									<div class="content">
 										<div class="clearfix">
-											<img src="images/g1.jpg" alt=" " class="pull-left gap" width="80px" height="80px" style="margin-right:10px">
-											<p>Donec a nulla erat. Fusce molestie pellentesque est eget tincidunt. Pellentesque at arcu a arcu bibendum mattis at suscipit
-												nunc. Maecenas neque ante,  congue condimentum ipsum. Integer et enim a massa dictum congue. Curabitur tempor massa ac lectus
-												aliquet vitae hendrerit leo semper lorem ipsum dolor. <a data-toggle="modal" data-target="#more2">More</a></p>
+											<img src="{{$feed->full_picture}}" alt=" " class="pull-left gap" width="80px" height="80px" style="margin-right:10px">
+											<p>{{$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></p>
 										</div>
 									</div>
+										@endforeach
 								</div>
-								<div class="clearfix">
-									<img src="images/g1.jpg" alt=" " class="pull-left gap" width="80px" height="80px" style="margin-right:10px">
-									<p>Donec a nulla erat. Fusce molestie pellentesque est eget tincidunt. Pellentesque at arcu a arcu bibendum mattis at suscipit
-										nunc. Maecenas neque ante,  congue condimentum ipsum. Integer et enim a massa dictum congue. Curabitur tempor massa ac lectus
-										aliquet vitae hendrerit leo semper lorem ipsum dolor. <a data-toggle="modal" data-target="#more2">More</a></p>
-								</div>
+
 							</div>
 							<!-- end of BOX WRAPPER -->
 						</div>
@@ -734,32 +724,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</li>
 		</ul>
 	</div>
-	<div class="modal bnr-modal fade" id="more2" role="dialog">
+	@foreach($news as $newss)
+	<div class="modal bnr-modal fade" id="more{{$newss->id}}" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body modal-spa">
-					<h4>Blanditiis deleniti</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. Etiam mattis eros eu ullamcorper volutpat. Proin ut dui a urna efficitur varius. uisque molestie cursus mi et congue consectetur adipiscing elit cras rutrum iaculis enim, Lorem ipsum dolor sit amet, non convallis felis mattis at. Maecenas sodales tortor ac ligula ultrices dictum et quis urna. Etiam pulvinar metus neque, eget porttitor massa vulputate in. Fusce lacus purus, pulvinar ut lacinia id, sagittis eu mi. Vestibulum eleifend massa sem, eget dapibus turpis efficitur at. Aliquam viverra quis leo et efficitur. Nullam arcu risus, scelerisque quis interdum eget, fermentum viverra turpis. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut At vero eos </p>
+					<h4>{{$newss->title}}</h4>
+					<p>{{$newss->details}}</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal bnr-modal fade" id="more3" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body modal-spa">
-					<h4>Blanditiis deleniti</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. Etiam mattis eros eu ullamcorper volutpat. Proin ut dui a urna efficitur varius. uisque molestie cursus mi et congue consectetur adipiscing elit cras rutrum iaculis enim, Lorem ipsum dolor sit amet, non convallis felis mattis at. Maecenas sodales tortor ac ligula ultrices dictum et quis urna. Etiam pulvinar metus neque, eget porttitor massa vulputate in. Fusce lacus purus, pulvinar ut lacinia id, sagittis eu mi. Vestibulum eleifend massa sem, eget dapibus turpis efficitur at. Aliquam viverra quis leo et efficitur. Nullam arcu risus, scelerisque quis interdum eget, fermentum viverra turpis. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut At vero eos </p>
-				</div>
-			</div>
-		</div>
-	</div>
+		@endforeach
 </div>
 <div id="contact" class="contact">
 	<div class="container">
