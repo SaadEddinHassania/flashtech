@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Cairo:200,300,400,600,700,900&subset=arabic');
-#@import url("http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
 
 
 *, *:before, *:after {
@@ -81,9 +80,9 @@ label:hover {
 
 input:checked + label {
   color: #555;
-  border: 1px solid #ddd;
+  border: 1px solid orange;
   border-top: 2px solid orange;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid orange;
 }
 
 #tab11:checked ~ #content1,

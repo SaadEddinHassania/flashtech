@@ -4,7 +4,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body modal-spa">
-            <div class="col-md-6"><img src="{{Voyager::image($product->image)}}" alt=" " class="img-responsive" style="padding-top: 93px;"/></div>
+            <div class="col-md-6"><img src="{{Voyager::image($product->image)}}" alt=" " class="img-responsive" style="padding-top: 25px;"/></div>
             <div class="col-md-6">
                 <p><label>Name</label><label>{{$product->name}}</label></p>
                 <p><label>Price</label><label>{{$product->price}}</label></p>

@@ -1,3 +1,4 @@
+
 <section id="section-1" class="content-current">
     <div class="typography">
         <div  id="gallery" class="gallery">

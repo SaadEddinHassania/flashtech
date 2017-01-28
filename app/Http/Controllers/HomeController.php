@@ -31,16 +31,20 @@ class HomeController extends Controller
     public function getCategoryProducts(Request $request,$id){
         $cat = Category::find($id);
         $products='';
+
         if($cat->parent !=null){
             $products = $cat->products()->paginate(6);
         }else {
-            $products = $cat->allProducts()->paginate(6);
+            $ids=$cat->products()->pluck('id');
+            $ids=$ids->merge($cat->allProducts()->pluck('products.id'));
+            $products = Product::whereIn('id',$ids)->paginate(6);
         }
         if ($request->ajax()) {
             return Response::json(view('partials.products', compact('products'))->render());
         }
         return view('partials.products', compact('products'));
     }
+
 
     public function getSubCategories(Request $request,$id){
         $subCategories = Category::find($id)->children;
