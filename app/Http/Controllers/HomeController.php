@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Product;
@@ -17,7 +18,14 @@ class HomeController extends Controller
 
 //        return Voyager::image( Product::find(1)->image ) ;
         $mainCategories = Category::with('children')->where('parent_id','=',null)->get();
-        $products = $mainCategories->first()->children[0]->products()->paginate(6);
+        $products = [];
+        if($mainCategories->first()) {
+            $cat = $mainCategories->first();
+
+            $ids=$cat->products()->pluck('id');
+            $ids=$ids->merge($cat->allProducts()->pluck('products.id'));
+            $products = Product::whereIn('id',$ids)->paginate(6);
+        }
         $news = News::orderBy('id', 'desc')->take(3)->get();
 
         $feeds = $this->getFacebookFeeds();
@@ -25,20 +33,23 @@ class HomeController extends Controller
     }
 
     public function getFacebookFeeds(){
-        $fb = new Facebook([
-            'app_id' => '1811543022426737',
-            'app_secret' => '8eecda49d368724121d3683a63780fb1',
+        $appID = Voyager::setting('app_id');
+        $appSecret = Voyager::setting('app_secret');
+
+        $fb = new \Facebook\Facebook([
+            'app_id' => $appID,
+            'app_secret' => $appSecret,
             'default_graph_version' => 'v2.8',
-            'default_access_token' => 'EAAZAvlrpY2nEBALejeQFXnx0Uiex6sXPVbZADaTIry5i5M9bi1KN1jXMxWBu0senLHKVlN7hhNA3QP1s7RCMvZC9ttUE2mLCI9dUwIJJH7Gm9Ryhfgee1GGzsrR7xjC172K9NnmJXAlDqdAVtLvcAHBIEPgFZA6aZAOtM3vUGle9cG8Q9SkAB', // optional
+            'default_access_token' => $appID . '|' . $appSecret, // optional
         ]);
         try {
             // Requires the "read_stream" permission
-            $response = $fb->get('/me/feed?fields=message,full_picture,id&limit=5');
-        } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+            $response = $fb->get('/'.Voyager::setting('facebook_page_id').'/feed?fields=id,story,message,full_picture&limit=5');
+        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
-        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
             // When validation fails or other local issues
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
@@ -81,5 +92,32 @@ class HomeController extends Controller
         }
         return view('partials.categories', compact('id','subCategories'));
     }
+
+
+    public function postContactUs(Request $request){
+
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'subject' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/#contact')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Message::create($request->all());
+
+        return redirect()
+            ->route("home")
+            ->with([
+                'message'    => "Successfully Sent",
+                'alert-type' => 'success',
+            ]);
+    }
+
 
 }

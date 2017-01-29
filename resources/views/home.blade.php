@@ -65,8 +65,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 </head>
 <body dir="ltr">
+
 <!-- banner -->
-<div class="banner">
+<div class="banner" style="background: url({{Voyager::image(Voyager::setting('home_image'))}})no-repeat center 0px;">
 	<div class="header"><!-- header -->
 		<div class="container">
 			<nav class="navbar navbar-default">
@@ -117,8 +118,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div id="about" class="about">
 		<div class="col-md-6 about-left">
 			<h3 class="agileits-title">About Us</h3>
-			<h4>Blanditiis praesentium deleniti atque corrupti quos corrupti quos dolores</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt lorem sed velit fermentum lobortis, eget placerat mauris sed lectus tellus Fusce eu semper lacus, sodales id elit a, feugiat porttitor nulla. Sed porta magna vitae nisl vulputate lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in lobortis nulla.</p>
+			<h4>{{Voyager::Setting('about_us_title')}}</h4>
+			<p>{{Voyager::Setting('about_us_small_disc')}}</p>
 			<a href="#" class="sim-button button13" data-toggle="modal" data-target="#myModal"><span>More</span></a>
 		</div>
 		<!--<div class="col-md-6 about-right">
@@ -134,8 +135,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body modal-spa">
-					<h4>Blanditiis deleniti</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. Etiam mattis eros eu ullamcorper volutpat. Proin ut dui a urna efficitur varius. uisque molestie cursus mi et congue consectetur adipiscing elit cras rutrum iaculis enim, Lorem ipsum dolor sit amet, non convallis felis mattis at. Maecenas sodales tortor ac ligula ultrices dictum et quis urna. Etiam pulvinar metus neque, eget porttitor massa vulputate in. Fusce lacus purus, pulvinar ut lacinia id, sagittis eu mi. Vestibulum eleifend massa sem, eget dapibus turpis efficitur at. Aliquam viverra quis leo et efficitur. Nullam arcu risus, scelerisque quis interdum eget, fermentum viverra turpis. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut At vero eos </p>
+					<h4>{{Voyager::Setting('about_us_title')}}</h4>
+					<p>{{Voyager::Setting('about_us_disc')}}</p>
 				</div>
 			</div>
 		</div>
@@ -710,7 +711,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<div class="content">
 										<div class="clearfix">
 											<img src="{{$feed->full_picture}}" alt=" " class="pull-left gap" width="80px" height="80px" style="margin-right:10px">
-											<p>{{$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></p>
+											<p><b>{{$feed->story}}</b></b><br>{{$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></p>
 										</div>
 									</div>
 										@endforeach
@@ -747,25 +748,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="col-md-6 contact-left">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.9940307!3d40.719109700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a27e2f24131%3A0x64ffc98d24069f02!2sCANADA!5e0!3m2!1sen!2sin!4v1441710758555" allowfullscreen></iframe>
 			</div>
+
 			<div class="col-md-6 contact-right">
-				<form action="#" method="post">
+				@if (count($errors) > 0)
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+				<form action="{{route('contact_us')}}" method="post">
+					{{csrf_field()}}
 					<div class="styled-input agile-styled-input-top">
-						<input type="text" name="Name" required="">
+						<input type="text" name="name" required="">
 						<label>Name</label>
 						<span></span>
 					</div>
 					<div class="styled-input">
-						<input type="text" name="Email" required="">
+						<input type="text" name="email" required="">
 						<label>Email</label>
 						<span></span>
 					</div>
 					<div class="styled-input">
-						<input type="text" name="Subject" required="">
+						<input type="text" name="subject" required="">
 						<label>Subject</label>
 						<span></span>
 					</div>
 					<div class="styled-input">
-						<textarea name="Message" required=""></textarea>
+						<textarea name="message" required=""></textarea>
 						<label>Text Message</label>
 						<span></span>
 					</div>
