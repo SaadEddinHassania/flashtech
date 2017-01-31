@@ -157,13 +157,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<ul>
 				@foreach($mainCategories as $key=> $mainCategory)
 
-					<li class="sky-tab-content-{{$key+1}}">
+					<li class="sky-tab-content-{{$mainCategory->id}}">
 						<div class="typography">
 							<div class="container">
 								<div id="tabs" class="tabs">
 									<nav>
 										<ul id="sub-categories">
-
 										</ul>
 									</nav>
 									<div class="content products">
@@ -181,34 +180,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									getSubCats = function ($val){
 										$.get(window.location.origin+'/sub-categories/'+$val
 												,function(data){
-													$('#sub-categories').html(data);
-													getProds ($('input[name=sub-cats]').val());
+													$('.sky-tab-content-'+$val).find( '#sub-categories').html(data);
+													$('.sky-tab-content-'+$val).find( "div #tabs").on('click','input[name=sub-cats-'+$val+']',function (evt){ getProds ($val,$(this).val())});
+													$('.sky-tab-content-'+$val).find( "div #tabs").find('input[name=sub-cats-'+$val+']:first').click()
 												})
 									};
-									getSubCats($('input[name=sky-tabs]').val());
-									$("div.container").on('click','input[name=sky-tabs]',function (evt){ getSubCats($(this).val())});
 
-									getProds = function ($val){
+									getProds = function ($main,$val){
 										$.get(window.location.origin+'/category-products/'+$val
 												,function(data){
-													$('.products').html(data);
-													$("ul.pagination a").on('click',function (evt){ getPage ($(this).data('url'))});
+													$('.sky-tab-content-'+$main).find( '.products').html(data);
+													$('.sky-tab-content-'+$main).find("ul.pagination a").on('click',function (evt){ getPage ($main,$(this).data('url'))});
 													$("div.view-caption a").on('click',function (evt){
 														getProductModal ($(this).data('id'))});
 										})
 									};
-									$("div #tabs").on('click','input[name=sub-cats]',function (evt){ getProds ($(this).val())});
 
-									getPage = function ($val){
+									getPage = function ($main,$val){
 										$.get($val
 												,function(data){
-													$('.products').html(data);
-													$("ul.pagination a").on('click',function (evt){
-														getPage ($(this).data('url'))});
+													$('.sky-tab-content-'+$main).find( '.products').html(data);
+													$('.sky-tab-content-'+$main).find("ul.pagination a").on('click',function (evt){getPage ($main,$(this).data('url'))});
 												})
 									};
-									$("ul.pagination a").on('click',function (evt){
-										getPage ($(this).data('url'))});
 
 									getProductModal = function ($val){
 										$.get(window.location.origin+'/product-modal/'+$val
@@ -216,8 +210,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													$('#fill').html(data);
 												})
 									};
-									$("div.view-caption a").on('click',function (evt){
-										getProductModal ($(this).data('id'))});
+									$("div.container").on('click','input[name=sky-tabs]',function (evt){ getSubCats($(this).val())});
+									$("div.container").find('input[name=sky-tabs]:first').click();
 								});
 
 							</script>
