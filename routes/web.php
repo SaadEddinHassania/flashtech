@@ -12,13 +12,16 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/category-products/{id}', 'HomeController@getCategoryProducts');
-Route::get('/sub-categories/{id}', 'HomeController@getSubCategories');
-Route::get('/product-modal/{id}', 'HomeController@getProductModal');
-Route::post('/contact-us', 'HomeController@postContactUs')->name('contact_us');
+Route::get('/category_products/{id}', 'HomeController@getCategoryProducts');
+Route::get('/sub_categories/{id}', 'HomeController@getSubCategories');
+Route::get('/product_modal/{id}', 'HomeController@getProductModal');
+Route::post('/contact_us', 'HomeController@postContactUs')->name('contact_us');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-//    $namespacePrefix = '\\TCG\\Voyager\\Http\\Controllers\\';
+    Route::put('/categories/{id}/update_extra', 'Admin\CategoriesController@updateExtra')->name('admin.categories.updateExtra');
+    Route::post('/categories/{id}/add_extra', 'Admin\CategoriesController@addExtra')->name('admin.categories.addExtra');
+    Route::put('/products/{id}/update_extra', 'Admin\ProductsController@updateExtra')->name('admin.products.updateExtra');
+
 //    try {
 //        foreach (\TCG\Voyager\Models\DataType::all() as $dataTypes) {
 //            if ($dataTypes->slug == 'categories') {

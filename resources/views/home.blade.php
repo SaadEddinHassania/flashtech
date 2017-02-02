@@ -178,7 +178,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<script>
 								$(document).ready(function() {
 									getSubCats = function ($val){
-										$.get(window.location.origin+'/sub-categories/'+$val
+										$.get(window.location.origin+'/sub_categories/'+$val
 												,function(data){
 													$('.sky-tab-content-'+$val).find( '#sub-categories').html(data);
 													$('.sky-tab-content-'+$val).find( "div #tabs").on('click','input[name=sub-cats-'+$val+']',function (evt){ getProds ($val,$(this).val())});
@@ -187,7 +187,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									};
 
 									getProds = function ($main,$val){
-										$.get(window.location.origin+'/category-products/'+$val
+										$.get(window.location.origin+'/category_products/'+$val
 												,function(data){
 													$('.sky-tab-content-'+$main).find( '.products').html(data);
 													$('.sky-tab-content-'+$main).find("ul.pagination a").on('click',function (evt){ getPage ($main,$(this).data('url'))});
@@ -205,7 +205,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									};
 
 									getProductModal = function ($val){
-										$.get(window.location.origin+'/product-modal/'+$val
+										$.get(window.location.origin+'/productmodal/'+$val
 												,function(data){
 													$('#fill').html(data);
 												})

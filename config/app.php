@@ -168,6 +168,7 @@ return [
          */
 
         TCG\Voyager\VoyagerServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //
 
         /*
