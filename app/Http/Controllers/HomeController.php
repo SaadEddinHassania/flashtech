@@ -29,6 +29,9 @@ class HomeController extends Controller
         $news = News::orderBy('id', 'desc')->take(3)->get();
 
         $feeds = $this->getFacebookFeeds();
+//        foreach ($feeds as $feed){
+//            return $feed->full_picture;
+//        }
         return view('home',compact('mainCategories','products','news','feeds'));
     }
 
@@ -56,8 +59,8 @@ class HomeController extends Controller
         }
 
         $feedEdge = $response->getGraphEdge();
-
-        return json_decode($feedEdge);
+        $feedEdge = json_decode($feedEdge);
+        return $feedEdge;
     }
 
     public function getProductModal(Request $request,$id){

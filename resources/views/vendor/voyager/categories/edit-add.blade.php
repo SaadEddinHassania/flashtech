@@ -248,9 +248,9 @@
                                             @if( method_exists( $dataType->model_name, $row->field ) )
                                                 <?php $selected_value = (isset($dataTypeContent->{$row->field}) && !is_null(old($row->field, $dataTypeContent->{$row->field}))) ? old($row->field, $dataTypeContent->{$row->field}) : old($row->field); ?>
                                                 <select class="form-control select2" name="{{ $row->field }}">
-                                                    <option value="" @if($selected_value == null){{ 'selected="selected"' }}@endif></option>
+                                                    <option value @if($selected_value == null){{ 'selected="selected"' }}@endif></option>
 
-                                                <?php $relationshipClass = get_class(app($dataType->model_name)->{$row->field}()->getRelated()); ?>
+                                                    <?php $relationshipClass = get_class(app($dataType->model_name)->{$row->field}()->getRelated()); ?>
                                                     <?php $relationshipOptions = $relationshipClass::where('parent_id', '=', null)->get(); ?>
                                                     @foreach($relationshipOptions as $relationshipOption)
                                                         <option value="{{ $relationshipOption->{$options->relationship->key} }}" @if($selected_value == $relationshipOption->{$options->relationship->key}){{ 'selected="selected"' }}@endif>{{ $relationshipOption->{$options->relationship->label} }}</option>
@@ -346,72 +346,75 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    @if(isset($dataTypeContent->id))
+                        @if($dataTypeContent->parent_id == null)
+                            <form role="form"
+                                  action="{{ route('admin.'.$dataType->slug.'.updateExtra', $dataTypeContent->id) }}"
+                                  method="POST" enctype="multipart/form-data">
+                                <!-- PUT Method if we are editing -->
+                            @if(isset($dataTypeContent->id))
+                                {{ method_field("PUT") }}
+                            @endif
+                            <!-- CSRF TOKEN -->
+                                {{ csrf_field() }}
 
-                    @if($dataTypeContent->parent_id == null)
-                        <form role="form"
-                              action="{{ route('admin.'.$dataType->slug.'.updateExtra', $dataTypeContent->id) }}"
-                              method="POST" enctype="multipart/form-data">
-                            <!-- PUT Method if we are editing -->
-                        @if(isset($dataTypeContent->id))
-                            {{ method_field("PUT") }}
+                                <div class="panel-body">
+
+                                    @if (count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    <script>
+                                        $(document).ready(function () {
+                                            var selects = $('select.type-select');
+                                            for (var i = 0; i < selects.length; i++) {
+                                                var v = $(selects[i]).attr('value');
+                                                $(selects[i]).find('option').removeAttr('selected');
+                                                $(selects[i]).find('option[value="' + v + '"]').attr('selected', 'selected');
+                                            }
+                                        });
+                                    </script>
+                                    @foreach($dataTypeContent->fields as $field)
+                                        <input type="hidden" name="id[]" value="{{$field->id}}">
+                                        <div class="col-md-4">
+                                            <label for="field">Field</label>
+                                            <input type="text" class="form-control" name="field[]"
+                                                   value="{{$field->field}}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="asdf">Type</label>
+                                            <select name="type[]" class="form-control type-select"
+                                                    value="{{$field->type}}">
+                                                <option value="text">Text Box</option>
+                                                <option value="text_area">Text Area</option>
+                                                <option value="rich_text_box">Rich Textbox</option>
+                                                <option value="checkbox">Check Box</option>
+                                                <option value="file">File</option>
+                                                <option value="image">Image</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="details">Details</label>
+                                            <textarea name="details[]" id="details_textarea"
+                                                      class="form-control">{{$field->details}}</textarea>
+                                        </div>
+                                    @endforeach
+
+                                    <div style="clear:both"></div>
+                                    <button type="submit" class="btn btn-primary pull-right new-setting-btn">
+                                        <i class="voyager-plus"></i> Submit Fields
+                                    </button>
+                                    <div style="clear:both"></div>
+                                </div>
+                            </form>
                         @endif
-                        <!-- CSRF TOKEN -->
-                            {{ csrf_field() }}
-
-                            <div class="panel-body">
-
-                                @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                <script>
-                                    $(document).ready(function () {
-                                        var selects = $('select.type-select');
-                                        for (var i = 0; i < selects.length; i++) {
-                                            var v = $(selects[i]).attr('value');
-                                            $(selects[i]).find('option').removeAttr('selected');
-                                            $(selects[i]).find('option[value="' + v + '"]').attr('selected', 'selected');
-                                        }
-                                    });
-                                </script>
-                                @foreach($dataTypeContent->fields as $field)
-                                    <input type="hidden" name="id[]" value="{{$field->id}}">
-                                    <div class="col-md-4">
-                                        <label for="field">Field</label>
-                                        <input type="text" class="form-control" name="field[]"
-                                               value="{{$field->field}}">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="asdf">Type</label>
-                                        <select name="type[]" class="form-control type-select" value="{{$field->type}}">
-                                            <option value="text">Text Box</option>
-                                            <option value="text_area">Text Area</option>
-                                            <option value="rich_text_box">Rich Textbox</option>
-                                            <option value="checkbox">Check Box</option>
-                                            <option value="file">File</option>
-                                            <option value="image">Image</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="details">Details</label>
-                                        <textarea name="details[]" id="details_textarea"
-                                                  class="form-control">{{$field->details}}</textarea>
-                                    </div>
-                                @endforeach
-
-                                <div style="clear:both"></div>
-                                <button type="submit" class="btn btn-primary pull-right new-setting-btn">
-                                    <i class="voyager-plus"></i> Submit Fields
-                                </button>
-                                <div style="clear:both"></div>
-                            </div>
-                        </form>
                     @endif
+
 
                     <iframe id="form_target" name="form_target" style="display:none"></iframe>
                     <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="post"
@@ -425,67 +428,71 @@
                 </div>
             </div>
         </div>
-        @if($dataTypeContent->parent_id == null)
+        @if(isset($dataTypeContent->id))
+            @if($dataTypeContent->parent_id == null)
 
-            <div style="clear:both"></div>
+                <div style="clear:both"></div>
 
-            <div class="panel" style="margin-top:10px;">
-                <div class="panel-heading new-setting">
-                    <hr>
-                    <h3 class="panel-title"><i class="voyager-plus"></i> New Field</h3>
-                </div>
-                <div class="panel-body">
-                    <form action="{{ route('admin.categories.addExtra',$dataTypeContent->id) }}" method="POST">
-                        {{ csrf_field() }}
-                        <div class="col-md-4">
-                            <label for="display_name">Field</label>
-                            <input type="text" class="form-control" name="field">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="asdf">Type</label>
-                            <select name="type" class="form-control">
-                                <option value="text">Text Box</option>
-                                <option value="text_area">Text Area</option>
-                                <option value="rich_text_box">Rich Textbox</option>
-                                <option value="checkbox">Check Box</option>
-                                <option value="file">File</option>
-                                <option value="image">Image</option>
-                            </select>
-                        </div>
-                        <div class="col-md-12">
-                            <a id="toggle_options"><i class="voyager-double-down"></i> OPTIONS</a>
-                            <div class="new-settings-options">
-                                <label for="options">Options
-                                    <small>(optional, only applies to certain types like dropdown box or radio button)
-                                    </small>
-                                </label>
-                                <textarea name="details" id="options_textarea" class="form-control"></textarea>
-                                <div id="valid_options" class="alert-success alert" style="display:none">Valid Json
-                                </div>
-                                <div id="invalid_options" class="alert-danger alert" style="display:none">Invalid Json
+                <div class="panel" style="margin-top:10px;">
+                    <div class="panel-heading new-setting">
+                        <hr>
+                        <h3 class="panel-title"><i class="voyager-plus"></i> New Field</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ route('admin.categories.addExtra',$dataTypeContent->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="col-md-4">
+                                <label for="display_name">Field</label>
+                                <input type="text" class="form-control" name="field">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="asdf">Type</label>
+                                <select name="type" class="form-control">
+                                    <option value="text">Text Box</option>
+                                    <option value="text_area">Text Area</option>
+                                    <option value="rich_text_box">Rich Textbox</option>
+                                    <option value="checkbox">Check Box</option>
+                                    <option value="file">File</option>
+                                    <option value="image">Image</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <a id="toggle_options"><i class="voyager-double-down"></i> OPTIONS</a>
+                                <div class="new-settings-options">
+                                    <label for="options">Options
+                                        <small>(optional, only applies to certain types like dropdown box or radio
+                                            button)
+                                        </small>
+                                    </label>
+                                    <textarea name="details" id="options_textarea" class="form-control"></textarea>
+                                    <div id="valid_options" class="alert-success alert" style="display:none">Valid Json
+                                    </div>
+                                    <div id="invalid_options" class="alert-danger alert" style="display:none">Invalid
+                                        Json
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <script>
-                            $('document').ready(function () {
-                                $('#toggle_options').click(function () {
-                                    $('.new-settings-options').toggle();
-                                    if ($('#toggle_options .voyager-double-down').length) {
-                                        $('#toggle_options .voyager-double-down').removeClass('voyager-double-down').addClass('voyager-double-up');
-                                    } else {
-                                        $('#toggle_options .voyager-double-up').removeClass('voyager-double-up').addClass('voyager-double-down');
-                                    }
+                            <script>
+                                $('document').ready(function () {
+                                    $('#toggle_options').click(function () {
+                                        $('.new-settings-options').toggle();
+                                        if ($('#toggle_options .voyager-double-down').length) {
+                                            $('#toggle_options .voyager-double-down').removeClass('voyager-double-down').addClass('voyager-double-up');
+                                        } else {
+                                            $('#toggle_options .voyager-double-up').removeClass('voyager-double-up').addClass('voyager-double-down');
+                                        }
+                                    });
                                 });
-                            });
-                        </script>
-                        <div style="clear:both"></div>
-                        <button type="submit" class="btn btn-primary pull-right new-setting-btn">
-                            <i class="voyager-plus"></i> Add New Field
-                        </button>
-                        <div style="clear:both"></div>
-                    </form>
+                            </script>
+                            <div style="clear:both"></div>
+                            <button type="submit" class="btn btn-primary pull-right new-setting-btn">
+                                <i class="voyager-plus"></i> Add New Field
+                            </button>
+                            <div style="clear:both"></div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            @endif
         @endif
     </div>
 
@@ -496,6 +503,13 @@
     <script>
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
+
+            $( "select" ).change(function() {
+                if($(this).val()==''){
+                    $(this).prop("selectedIndex", -1);
+                }
+                alert($(this).val());
+            });
         });
     </script>
     <script src="{{ config('voyager.assets_path') }}/lib/js/tinymce/tinymce.min.js"></script>
