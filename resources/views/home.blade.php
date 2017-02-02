@@ -205,7 +205,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									};
 
 									getProductModal = function ($val){
-										$.get(window.location.origin+'/productmodal/'+$val
+										$.get(window.location.origin+'/product_modal/'+$val
 												,function(data){
 													$('#fill').html(data);
 												})
@@ -704,8 +704,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									@foreach($feeds as $feed)
 									<div class="content">
 										<div class="clearfix">
-											<img src="{{$feed->full_picture}}" alt=" " class="pull-left gap" width="80px" height="80px" style="margin-right:10px">
-											<p><b>{{$feed->story}}</b></b><br>{{$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></p>
+											<img src="{{@$feed->full_picture}}" alt=" " class="pull-left gap" width="80px" height="80px" style="margin-right:10px">
+											<p><b>{{@$feed->story}}</b></b><br>{{@$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></p>
 										</div>
 									</div>
 										@endforeach
