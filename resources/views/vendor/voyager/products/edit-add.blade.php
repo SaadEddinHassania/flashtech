@@ -189,13 +189,12 @@
                         </div>
                     </form>
 
+                    @if(isset($dataTypeContent->id))
                     <form role="form"
                           action="{{ route('admin.products.updateExtra', $dataTypeContent->id) }}"
                           method="POST" enctype="multipart/form-data">
                         <!-- PUT Method if we are editing -->
-                    @if(isset($dataTypeContent->id))
                         {{ method_field("PUT") }}
-                    @endif
                     <!-- CSRF TOKEN -->
                         {{ csrf_field() }}
 
@@ -266,6 +265,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    @endif
 
                     <iframe id="form_target" name="form_target" style="display:none"></iframe>
                     <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="post"
