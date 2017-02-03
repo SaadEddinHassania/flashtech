@@ -503,12 +503,12 @@
     <script>
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
+            $('select').prop('selectedIndex', -1);
 
             $( "select" ).change(function() {
                 if($(this).val()==''){
                     $(this).prop("selectedIndex", -1);
                 }
-                alert($(this).val());
             });
         });
     </script>
