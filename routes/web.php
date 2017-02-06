@@ -22,13 +22,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/categories/{id}/add_extra', 'Admin\CategoriesController@addExtra')->name('admin.categories.addExtra');
     Route::put('/products/{id}/update_extra', 'Admin\ProductsController@updateExtra')->name('admin.products.updateExtra');
 
+//    $namespacePrefix = '\\TCG\\Voyager\\Http\\Controllers\\';
+
 //    try {
 //        foreach (\TCG\Voyager\Models\DataType::all() as $dataTypes) {
-//            if ($dataTypes->slug == 'categories') {
-//                Route::resource($dataTypes->slug, 'CategoriesBreadController');
-//            } else {
-//                Route::resource($dataTypes->slug, $namespacePrefix . 'VoyagerBreadController');
-//            }
+////            if ($dataTypes->slug == 'categories') {
+////                Route::resource($dataTypes->slug, 'CategoriesBreadController');
+////            } else {
+//                Route::resource($dataTypes->slug, 'Admin\Voyager\VoyagerBreadController');
+////            }
 //        }
 //    } catch (\InvalidArgumentException $e) {
 //        throw new \InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
