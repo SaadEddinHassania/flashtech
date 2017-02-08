@@ -29,15 +29,15 @@ Route::group(['as' => 'voyager.'], function () {
 
         Route::get('profile', ['uses' => $namespacePrefix.'VoyagerController@profile', 'as' => 'profile']);
 
-//        try {
-//            foreach (\TCG\Voyager\Models\DataType::all() as $dataTypes) {
-//                Route::resource($dataTypes->slug, $namespacePrefix.'VoyagerBreadController');
-//            }
-//        } catch (\InvalidArgumentException $e) {
-//            throw new \InvalidArgumentException("Custom routes hasn't been configured because: ".$e->getMessage(), 1);
-//        } catch (\Exception $e) {
-//            // do nothing, might just be because table not yet migrated.
-//        }
+        try {
+            foreach (\TCG\Voyager\Models\DataType::all() as $dataTypes) {
+                Route::resource($dataTypes->slug, $namespacePrefix.'VoyagerBreadController');
+            }
+        } catch (\InvalidArgumentException $e) {
+            throw new \InvalidArgumentException("Custom routes hasn't been configured because: ".$e->getMessage(), 1);
+        } catch (\Exception $e) {
+            // do nothing, might just be because table not yet migrated.
+        }
 
         // Role Routes
         Route::resource('roles', $namespacePrefix.'VoyagerRoleController');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Models\Message;
 use App\Models\Category;
 use App\Models\News;
@@ -14,28 +15,25 @@ use TCG\Voyager\Facades\Voyager;
 
 class HomeController extends Controller
 {
-    public function index(){
-
-//        return Voyager::image( Product::find(1)->image ) ;
-        $mainCategories = Category::with('children')->where('parent_id','=',null)->get();
+    public function index()
+    {
+        $mainCategories = Category::with('children')->where('parent_id', '=', null)->get();
         $products = [];
-        if($mainCategories->first()) {
+        if ($mainCategories->first()) {
             $cat = $mainCategories->first();
 
-            $ids=$cat->products()->pluck('id');
-            $ids=$ids->merge($cat->allProducts()->pluck('products.id'));
-            $products = Product::whereIn('id',$ids)->paginate(6);
+            $ids = $cat->products()->pluck('id');
+            $ids = $ids->merge($cat->allProducts()->pluck('products.id'));
+            $products = Product::whereIn('id', $ids)->paginate(6);
         }
         $news = News::orderBy('id', 'desc')->take(3)->get();
 
         $feeds = $this->getFacebookFeeds();
-//        foreach ($feeds as $feed){
-//            return $feed->full_picture;
-//        }
-        return view('home',compact('mainCategories','products','news','feeds'));
+        return view('home', compact('mainCategories', 'products', 'news', 'feeds'));
     }
 
-    public function getFacebookFeeds(){
+    public function getFacebookFeeds()
+    {
         $appID = Voyager::setting('app_id');
         $appSecret = Voyager::setting('app_secret');
 
@@ -47,7 +45,7 @@ class HomeController extends Controller
         ]);
         try {
             // Requires the "read_stream" permission
-            $response = $fb->get('/'.Voyager::setting('facebook_page_id').'/feed?fields=id,story,message,full_picture&limit=5');
+            $response = $fb->get('/' . Voyager::setting('facebook_page_id') . '/feed?fields=id,story,message,full_picture&limit=5');
         } catch (\Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
@@ -63,7 +61,8 @@ class HomeController extends Controller
         return $feedEdge;
     }
 
-    public function getProductModal(Request $request,$id){
+    public function getProductModal(Request $request, $id)
+    {
         $product = Product::find($id);
         if ($request->ajax()) {
             return Response::json(view('partials.product', compact('product'))->render());
@@ -71,16 +70,17 @@ class HomeController extends Controller
         return view('partials.product', compact('product'));
     }
 
-    public function getCategoryProducts(Request $request,$id){
+    public function getCategoryProducts(Request $request, $id)
+    {
         $cat = Category::find($id);
 //        $products='';
 
-        if($cat->parent !=null){
+        if ($cat->parent != null) {
             $products = $cat->products()->paginate(6);
-        }else {
-            $ids=$cat->products()->pluck('id');
-            $ids=$ids->merge($cat->allProducts()->pluck('products.id'));
-            $products = Product::whereIn('id',$ids)->paginate(6);
+        } else {
+            $ids = $cat->products()->pluck('id');
+            $ids = $ids->merge($cat->allProducts()->pluck('products.id'));
+            $products = Product::whereIn('id', $ids)->paginate(6);
         }
         if ($request->ajax()) {
             return Response::json(view('partials.products', compact('products'))->render());
@@ -88,16 +88,18 @@ class HomeController extends Controller
         return view('partials.products', compact('products'));
     }
 
-    public function getSubCategories(Request $request,$id){
+    public function getSubCategories(Request $request, $id)
+    {
         $subCategories = Category::find($id)->children;
         if ($request->ajax()) {
-            return Response::json(view('partials.categories', compact('id','subCategories'))->render());
+            return Response::json(view('partials.categories', compact('id', 'subCategories'))->render());
         }
-        return view('partials.categories', compact('id','subCategories'));
+        return view('partials.categories', compact('id', 'subCategories'));
     }
 
 
-    public function postContactUs(Request $request){
+    public function postContactUs(Request $request)
+    {
 
         $validator = \Validator::make($request->all(), [
             'name' => 'required|string',
@@ -117,7 +119,7 @@ class HomeController extends Controller
         return redirect()
             ->route("home")
             ->with([
-                'message'    => "Successfully Sent",
+                'message' => "Successfully Sent",
                 'alert-type' => 'success',
             ]);
     }

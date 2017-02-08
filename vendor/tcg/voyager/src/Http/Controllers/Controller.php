@@ -53,7 +53,10 @@ abstract class Controller extends BaseController
 
             if (is_null($content)) {
                 if (isset($data->{$row->field})) {
-                    $content = $data->{$row->field};
+                    if (!$row->field == 'select_dropdown') {
+                        $content = $data->{$row->field};
+                    }
+
                 }
                 if ($row->field == 'password') {
                     $content = $data->{$row->field};
@@ -121,6 +124,13 @@ abstract class Controller extends BaseController
                     $content = [];
                 }
 
+                return $content;
+
+            case 'select_dropdown':
+                $content = $request->input($row->field);
+
+                if($content == '')
+                    $content = null;
                 return $content;
 
             /********** IMAGE TYPE **********/

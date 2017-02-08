@@ -18,6 +18,7 @@ class CreateTranslationsTable extends Migration
             $table->morphs('translationable');
             $table->string('key');
             $table->longText('value');
+            $table->timestamps();
         });
     }
 
