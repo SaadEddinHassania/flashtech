@@ -45,7 +45,7 @@ class HomeController extends Controller
         ]);
         try {
             // Requires the "read_stream" permission
-            $response = $fb->get('/' . Voyager::setting('facebook_page_id') . '/feed?fields=id,story,message,full_picture&limit=5');
+            $response = $fb->get('/' . Voyager::setting('facebook_page_id') . '/posts?fields=id,story,message,picture,type&limit=8');
         } catch (\Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
@@ -57,8 +57,8 @@ class HomeController extends Controller
         }
 
         $feedEdge = $response->getGraphEdge();
-        $feedEdge = json_decode($feedEdge);
-        return $feedEdge;
+        $feedEdge = collect(json_decode($feedEdge));
+        return $feedEdge->where('message',!null)->take(5);
     }
 
     public function getProductModal(Request $request, $id)

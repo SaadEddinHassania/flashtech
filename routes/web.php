@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/{locale}', function ($locale) {
-    App::setLocale($locale);
-
-    return redirect('/');
-});
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category_products/{id}', 'HomeController@getCategoryProducts');
 Route::get('/sub_categories/{id}', 'HomeController@getSubCategories');
