@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Touché</title>
+<title>Flash Tach</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -42,15 +42,15 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand page-scroll" href="#page-top">Touché</a> </div>
+      <a class="navbar-brand page-scroll" href="#page-top"><img class="img-responsive" src="images/logo1.png" width="200px" height="200px"/></a>
+    </div>
     
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#about" class="page-scroll">About</a></li>
         <li><a href="#news" class="page-scroll">news</a></li>
-        <li><a href="#portfolio" class="page-scroll">Gallery</a></li>
-        <li><a href="#team" class="page-scroll">Chefs</a></li>
+        <li><a href="#portfolio" class="page-scroll">Our-Product</a></li>
         <li><a href="#call-reservation" class="page-scroll">Contact</a></li>
       </ul>
     </div>
@@ -64,9 +64,8 @@
       <div class="container">
         <div class="row">
           <div class="intro-text">
-            <h1>Touché</h1>
-            <p>Restaurant / Coffee / Pub</p>
-            <a href="#about" class="btn btn-custom btn-lg page-scroll">Discover Story</a> </div>
+            <a href="#about" class="btn btn-custom btn-lg page-scroll">Discover Story</a>
+          </div>
         </div>
       </div>
     </div>
@@ -76,17 +75,12 @@
 <div id="about">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-6 ">
-        <div class="about-img"><img src="img/about.jpg" class="img-responsive" alt=""></div>
-      </div>
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-12">
         <div class="about-text">
-          <h2>Our Restaurant</h2>
+          <h2>About US</h2>
           <hr>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
-          <h3>Awarded Chefs</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare.</p>
-        </div>
+          </div>
       </div>
     </div>
   </div>
@@ -107,29 +101,25 @@
           <hr>
           <div class="news-item">
             <div class="news-item-name"> Delicious Dish </div>
-            <div class="news-item-price"> $35 </div>
             <div class="news-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
           </div>
           <div class="news-item">
             <div class="news-item-name"> Delicious Dish </div>
-            <div class="news-item-price"> $30 </div>
             <div class="news-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
           </div>
           <div class="news-item">
             <div class="news-item-name"> Delicious Dish </div>
-            <div class="news-item-price"> $30 </div>
             <div class="news-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
           </div>
           <div class="news-item">
             <div class="news-item-name"> Delicious Dish </div>
-            <div class="news-item-price"> $30 </div>
             <div class="news-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
           </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="news-section">
-          <h2 class="news-section-title">Facebook</h2>
+          <h2 class="news-section-title">Facebook Posts</h2>
           <hr>
           @foreach($feeds as $feed)
           <div class="news-item" style="height: 80px;">
@@ -140,7 +130,7 @@
 
             <div class="news-item-name"> {{$feed->story}} </div>
               @endif
-            <div class="news-item-description"> {{@$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></div>
+              <div class="news-item-description"> {{@$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></div>
           </div>
           @endforeach
         </div>
@@ -152,9 +142,8 @@
 <div id="portfolio">
   <div class="section-title text-center center">
     <div class="overlay">
-      <h2>Gallery</h2>
+      <h2>Our Product</h2>
       <hr>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed.</p>
     </div>
   </div>
   <div class="container">
@@ -178,8 +167,10 @@
         <div class="col-sm-6 col-md-4 col-lg-4 breakfast">
           <div class="portfolio-item">
             <div class="hover-bg"> <a href="img/portfolio/01-large.jpg" title="Dish Name" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Dish Name</h4>
+              <div class="hover-text row">
+                <label class="col-md-4">Dish Name</label>
+                <label class="col-md-4">Dish Name</label>
+                <label class="col-md-4">Dish Name</label>
               </div>
               <img src="img/portfolio/01-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
@@ -187,27 +178,33 @@
         <div class="col-sm-6 col-md-4 col-lg-4 dinner">
           <div class="portfolio-item">
             <div class="hover-bg"> <a href="img/portfolio/02-large.jpg" title="Dish Name" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Dish Name</h4>
-              </div>
+                <div class="hover-text row">
+                  <label class="col-md-4">Dish Name</label>
+                  <label class="col-md-4">Dish Name</label>
+                  <label class="col-md-4">Dish Name</label>
+                </div>
               <img src="img/portfolio/02-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-4 breakfast">
           <div class="portfolio-item">
             <div class="hover-bg"> <a href="img/portfolio/03-large.jpg" title="Dish Name" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Dish Name</h4>
-              </div>
+                <div class="hover-text row">
+                  <label class="col-md-4">Dish Name</label>
+                  <label class="col-md-4">Dish Name</label>
+                  <label class="col-md-4">Dish Name</label>
+                </div>
               <img src="img/portfolio/03-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-4 breakfast">
           <div class="portfolio-item">
             <div class="hover-bg"> <a href="img/portfolio/04-large.jpg" title="Dish Name" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Dish Name</h4>
-              </div>
+                <div class="hover-text row">
+                  <label class="col-md-4">Dish Name</label>
+                  <label class="col-md-4">Dish Name</label>
+                  <label class="col-md-4">Dish Name</label>
+                </div>
               <img src="img/portfolio/04-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
           </div>
         </div>
@@ -287,51 +284,10 @@
     </div>
   </div>
 </div>
-<!-- Team Section -->
-<div id="team" class="text-center">
-  <div class="overlay">
-    <div class="container">
-      <div class="col-md-10 col-md-offset-1 section-title">
-        <h2>Meet Our Chefs</h2>
-        <hr>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
-      </div>
-      <div id="row">
-        <div class="col-md-4 team">
-          <div class="thumbnail">
-            <div class="team-img"><img src="img/team/01.jpg" alt="..."></div>
-            <div class="caption">
-              <h3>Mike Doe</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 team">
-          <div class="thumbnail">
-            <div class="team-img"><img src="img/team/02.jpg" alt="..."></div>
-            <div class="caption">
-              <h3>Chris Doe</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 team">
-          <div class="thumbnail">
-            <div class="team-img"><img src="img/team/03.jpg" alt="..."></div>
-            <div class="caption">
-              <h3>Ethan Doe</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Call Reservation Section -->
 <div id="call-reservation" class="text-center">
   <div class="container">
-    <h2>Want to make a reservation? Call <strong>1-887-654-3210</strong></h2>
+    <h2>For inquiries? Call <strong>08 286 1991</strong></h2>
   </div>
 </div>
 <!-- Contact Section -->
@@ -340,7 +296,6 @@
     <div class="section-title text-center">
       <h2>Contact Form</h2>
       <hr>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed.</p>
     </div>
     <div class="col-md-10 col-md-offset-1">
       <form name="sentMessage" id="contactForm" novalidate>
@@ -370,25 +325,19 @@
 </div>
 <div id="footer">
   <div class="container text-center">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <h3>Address</h3>
       <div class="contact-item">
-        <p>4321 California St,</p>
-        <p>San Francisco, CA 12345</p>
+        <p>Palestine.Gaza</p>
+        <p>Al-Wehda street</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <h3>Opening Hours</h3>
-      <div class="contact-item">
-        <p>Mon-Thurs: 10:00 AM - 11:00 PM</p>
-        <p>Fri-Sun: 11:00 AM - 02:00 AM</p>
-      </div>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <h3>Contact Info</h3>
       <div class="contact-item">
-        <p>Phone: +1 123 456 1234</p>
-        <p>Email: info@company.com</p>
+        <p>Phone: 08 286 1991</p>
+        <p>Email: info@flashtech-it.com
+        </p>
       </div>
     </div>
   </div>
@@ -396,12 +345,12 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="social">
         <ul>
-          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="https://www.facebook.com/flashtechco/"><i class="fa fa-facebook"></i></a></li>
           <li><a href="#"><i class="fa fa-twitter"></i></a></li>
           <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
         </ul>
       </div>
-      <p>&copy; 2016 Touché. All rights reserved. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+      <p>&copy; 2017 Flash Tech. All rights reserved.</p>
     </div>
   </div>
 </div>

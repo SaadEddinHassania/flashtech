@@ -38,7 +38,7 @@ p.intro {
 	line-height: 24px;
 }
 a {
-	color: #8eb640;
+	color: darkorange;
 }
 a:hover, a:focus {
 	text-decoration: none;
@@ -74,7 +74,7 @@ hr {
 	width: 70px;
 	text-align: center;
 	position: relative;
-	background: #8eb640;
+	background: darkorange;
 	margin: 0;
 	margin-bottom: 40px;
 	border: 0;
@@ -101,7 +101,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #menu a.navbar-brand {
 	font-family: 'Dancing Script', cursive;
 	font-size: 36px;
-	color: #8eb640;
+	color: darkorange;
 	font-weight: 700;
 	letter-spacing: 1px;
 }
@@ -116,7 +116,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	margin: 10px 15px 0 15px;
 }
 #menu.navbar-default .navbar-nav > li > a:hover {
-	color: #8eb640;
+	color: darkorange;
 }
 .on {
 	background-color: #262626 !important;
@@ -124,15 +124,15 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	padding: 10px 0 !important;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color: #8eb640 !important;
+	color: darkorange !important;
 	background-color: transparent;
 }
 .navbar-toggle {
 	border-radius: 0;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	background-color: #8eb640;
-	border-color: #8eb640;
+	background-color: darkorange;
+	border-color: darkorange;
 }
 .navbar-default .navbar-toggle:hover>.icon-bar {
 	background-color: #FFF;
@@ -155,7 +155,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 .btn-custom {
 	text-transform: uppercase;
 	color: #fff;
-	background-color: #72a411;
+	background-color: darkorange;
 	border: 0;
 	padding: 14px 20px;
 	margin: 0;
@@ -168,7 +168,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 .btn-custom:hover, .btn-custom:focus, .btn-custom.focus, .btn-custom:active, .btn-custom.active {
 	color: #fff;
-	background-color: #628d0f;
+	background-color: darkorange;
 }
 /* Header Section */
 .intro {
@@ -194,7 +194,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	margin-bottom: 10px;
 }
 .intro span {
-	color: #a7c44c;
+	color: darkorange;
 	font-weight: 600;
 }
 .intro p {
@@ -218,6 +218,11 @@ header .intro-text {
 }
 #about .about-text {
 	margin-left: 10px;
+	text-align: center;
+}
+.about-text hr{
+	margin: 0 auto;
+	margin-bottom: 40px;
 }
 #about .about-img {
 	display: inline-block;
@@ -236,6 +241,7 @@ header .intro-text {
 #about p {
 	line-height: 24px;
 	margin: 15px 0 30px;
+	text-align: center;
 }
 /* Menu Section */
 #news {
@@ -250,7 +256,7 @@ header .intro-text {
 }
 #news img {
 	width: 300px;
-	box-shadow: 15px 0 #a7c44c;
+	box-shadow: 15px 0 darkorange;
 }
 #news h3 {
 	padding: 10px 0;
@@ -289,6 +295,7 @@ header .intro-text {
 #news .news-item-description {
 	font-style: italic;
 	font-size: 15px;
+	padding-left: 8em;
 }
 #news .news-item-price {
 	float: right;
@@ -333,11 +340,11 @@ ol.type li a {
 }
 ol.type li a.active {
 	color: #fff;
-	background-color: #8eb640;
+	background-color: darkorange;
 }
 ol.type li a:hover {
 	color: #fff;
-	background-color: #8eb640;
+	background-color: darkorange;
 }
 .isotope-item {
 	z-index: 2
@@ -474,15 +481,15 @@ ol.type li a:hover {
 	padding: 90px 0;
 	color: #fff;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8eb640+50,779936+100 */
-	background: rgb(142,182,64); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(142,182,64,1) 50%, rgba(119,153,54,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(142,182,64,1) 50%, rgba(119,153,54,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(142,182,64,1) 50%, rgba(119,153,54,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8eb640', endColorstr='#779936', GradientType=0 ); /* IE6-9 */
+	background: darkorange; /* Old browsers */
+	background: -moz-linear-gradient(top, darkorange 50%, darkorange 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, darkorange 50%, darkorange 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, darkorange 50%, darkorange 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='darkorange', endColorstr='#779936', GradientType=0 ); /* IE6-9 */
 }
 #call-reservation .overlay {
 	padding: 80px 0;
-	background: #8eb640;
+	background: darkorange;
 }
 #call-reservation h2 {
 	font-family: 'Open Sans', sans-serif;
@@ -580,7 +587,7 @@ color: #777;
 	padding: 50px 0 0 0;
 }
 #footer h3 {
-	color: #8eb640;
+	color: darkorange;
 	font-weight: 400;
 	font-size: 18px;
 	text-transform: uppercase;
@@ -591,10 +598,10 @@ color: #777;
 	margin-top: 50px;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#779936+0,8eb640+50 */
 	background: rgb(119,153,54); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(119,153,54,1) 0%, rgba(142,182,64,1) 50%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(119,153,54,1) 0%, rgba(142,182,64,1) 50%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(119,153,54,1) 0%, rgba(142,182,64,1) 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', endColorstr='#8eb640', GradientType=0 ); /* IE6-9 */
+	background: -moz-linear-gradient(top, darkorange 0%, darkorange 50%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, darkorange 0%, darkorange 50%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, darkorange 0%, darkorange 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#779936', endColorstr='darkorange', GradientType=0 ); /* IE6-9 */
 }
 #footer .social {
 	margin: 20px 0 30px 0;
