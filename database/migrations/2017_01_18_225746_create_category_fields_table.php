@@ -18,6 +18,7 @@ class CreateCategoryFieldsTable extends Migration
             $table->integer('category_id')->unsigned()->index();
             $table->string('field');
             $table->string('type');
+            $table->text('details')->nullable();
             $table->boolean('required')->default(false);
 
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');

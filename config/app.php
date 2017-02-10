@@ -78,6 +78,7 @@ return [
     */
 
     'locale' => 'en',
+    'locales' => ['en' => 'English', 'ar' => 'Arabic'],
 
     /*
     |--------------------------------------------------------------------------
@@ -168,6 +169,7 @@ return [
          */
 
         TCG\Voyager\VoyagerServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //
 
         /*

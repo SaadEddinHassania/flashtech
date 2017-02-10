@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('name');
             $table->string('image')->nullable();
-            $table->float('price')->nullable();
+            $table->string('price')->nullable();
             $table->timestamps();
         });
     }
