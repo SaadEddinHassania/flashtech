@@ -8,8 +8,10 @@ $(function() {
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
+            var _token = $("input[name=_token]").val();
             var name = $("input#name").val();
             var email = $("input#email").val();
+            var subject = $("input#subject").val();
             var message = $("textarea#message").val();
             var firstName = name; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
@@ -17,12 +19,14 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: window.location.href+"/contact_us",
                 type: "POST",
                 data: {
                     name: name,
                     email: email,
-                    message: message
+                    subject: subject,
+                    message: message,
+                    _token:_token
                 },
                 cache: false,
                 success: function() {

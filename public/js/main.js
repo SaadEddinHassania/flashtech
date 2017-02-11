@@ -1,5 +1,5 @@
 getSubCats = function ($val){
-    $.get(window.location.origin+'/sub_categories/'+$val
+    $.get(window.location.href+'/sub_categories/'+$val
         ,function(data){
             $('.sub-type').html(data);
             subCatFun();
@@ -56,7 +56,7 @@ subCatFun = function (){
     });
 };
 getProducts = function ($val){
-    $.get(window.location.origin+'/category_products/'+$val
+    $.get(window.location.href+'/category_products/'+$val
         ,function(data){
         setProducts(data);
         })

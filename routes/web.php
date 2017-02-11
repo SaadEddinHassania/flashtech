@@ -10,12 +10,13 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/category_products/{id}', 'HomeController@getCategoryProducts');
-Route::get('/sub_categories/{id}', 'HomeController@getSubCategories');
-Route::get('/product_modal/{id}', 'HomeController@getProductModal');
-Route::post('/contact_us', 'HomeController@postContactUs')->name('contact_us');
+Route::group(['middleware' => \App\Http\Middleware\Language::class], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/category_products/{id}', 'HomeController@getCategoryProducts');
+    Route::get('/sub_categories/{id}', 'HomeController@getSubCategories');
+    Route::get('/product_modal/{id}', 'HomeController@getProductModal');
+    Route::post('/contact_us', 'HomeController@postContactUs')->name('contact_us');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

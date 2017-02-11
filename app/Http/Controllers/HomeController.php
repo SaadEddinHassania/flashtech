@@ -15,7 +15,7 @@ use TCG\Voyager\Facades\Voyager;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $mainCategories = Category::with('children')->where('parent_id', '=', null)->get();
 
@@ -26,7 +26,7 @@ class HomeController extends Controller
         $id = 0;
         $viewSub = view('partials.categories',compact('id','subCategories'));
         $products = Product::paginate(9);
-        $products->setPath('category_products/'.$id);
+        $products->setPath($request->segment(1).'/category_products/'.$id);
         $viewProducts = view('partials.products',compact('products'));
         return view('home', compact('mainCategories', 'news', 'viewSub','viewProducts','feeds'));
     }
@@ -86,7 +86,7 @@ class HomeController extends Controller
             }
         }
 
-        $products->setPath('category_products/'.$id);
+        $products->setPath($request->segment(1).'/category_products/'.$id);
 
         if ($request->ajax()) {
             return Response::json(view('partials.products', compact('products'))->render());

@@ -34,7 +34,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" dir="{{App::isLocale('ar')?'rtl':'ltr'}}">
 <!-- Navigation
     ==========================================-->
 <nav id="menu" class="navbar navbar-default navbar-fixed-top">
@@ -48,21 +48,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        @if(App::isLocale('ar'))
-          <li><a href="#about" class="page-scroll">About</a></li>
-          <li><a href="#news" class="page-scroll">news</a></li>
+          <li><a href="#about" class="page-scroll">@lang('home.about')</a></li>
+          <li><a href="#news" class="page-scroll">@lang('home.news')</a></li>
           <li><a href="#products" class="page-scroll">@lang('home.products')</a></li>
-          <li><a href="#call-reservation" class="page-scroll">Contact</a></li>
-          @else
-          <li><a href="#about" class="page-scroll">About</a></li>
-          <li><a href="#news" class="page-scroll">news</a></li>
-          <li><a href="#products" class="page-scroll">Products</a></li>
-          <li><a href="#call-reservation" class="page-scroll">Contact</a></li>
-          @endif
+          <li><a href="#call-reservation" class="page-scroll">@lang('home.contacts')</a></li>
 
       </ul>
     </div>
-    <!-- /.navbar-collapse --> 
+    <!-- /.navbar-collapse -->
   </div>
 </nav>
 <!-- Header -->
@@ -85,10 +78,15 @@
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <div class="about-text">
-          <h2>About US</h2>
+          <h2>@lang('home.about')</h2>
           <hr>
-          <h3>{{Voyager::setting('about_us_title')}}</h3>
-          <p>{{Voyager::setting('about_us_disc')}}</p>
+          @if(App::isLocale('ar'))
+          <h3>{{Voyager::setting('about_us_title_ar')}}</h3>
+          <p>{{Voyager::setting('about_us_disc_ar')}}</p>
+            @else
+            <h3>{{Voyager::setting('about_us_title')}}</h3>
+            <p>{{Voyager::setting('about_us_disc')}}</p>
+            @endif
           </div>
       </div>
     </div>
@@ -98,22 +96,31 @@
 <div id="news">
   <div class="section-title text-center center">
     <div class="overlay">
-      <h2>News</h2>
+      <h2>@lang('home.news')</h2>
       <hr>
     </div>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-6">
+      <div class="col-xs-12 col-sm-6" >
         <div class="news-section">
-          <h2 class="news-section-title">News</h2>
+          <h2 class="news-section-title">@lang('home.news')</h2>
           <hr>
-          @foreach($news as $new)
-          <div class="news-item">
-            <div class="news-item-name"> {{$new->title}} </div>
-            <div class="news-item-description"> {{$new->details}} </div>
-          </div>
-          @endforeach
+          @if(App::isLocale('ar'))
+            @foreach($news as $new)
+              <div class="news-item" >
+                <div class="news-item-name"> {{$new->translations()->where('key','title')->first()->value}} </div>
+                <div class="news-item-description"> {{$new->translations()->where('key','details')->first()->value}} </div>
+              </div>
+            @endforeach
+          @else
+            @foreach($news as $new)
+              <div class="news-item">
+                <div class="news-item-name"> {{$new->title}} </div>
+                <div class="news-item-description"> {{$new->details}} </div>
+              </div>
+            @endforeach
+          @endif
         </div>
       </div>
       <div class="col-xs-12 col-sm-6">
@@ -138,10 +145,10 @@
   </div>
 </div>
 <!-- Products Section -->
-<div id="products">
+<div id="products" dir="ltr">
   <div class="section-title text-center center">
     <div class="overlay">
-      <h2>Our Product</h2>
+      <h2>@lang('home.products')</h2>
       <hr>
     </div>
   </div>
@@ -151,7 +158,7 @@
         <ul class="cat">
           <li>
             <ol class="type">
-              <li><a href="#" data-filter="*" class="active">All</a></li>
+              <li><a href="#" data-filter="*" class="active">@lang('home.all')</a></li>
               @foreach($mainCategories as $mainCategory)
                 <li><a href="#" data-id="{{$mainCategory->id}}" >{{$mainCategory->name}}</a></li>
               @endforeach
@@ -183,29 +190,29 @@
 <!-- Call Reservation Section -->
 <div id="call-reservation" class="text-center">
   <div class="container">
-    <h2>For inquiries? Call <strong>08 286 1991</strong></h2>
+    <h2>@lang('home.support') </h2><br><h2><strong>08 286 1991</strong></h2>
   </div>
 </div>
 <!-- Contact Section -->
 <div id="contact" class="text-center">
   <div class="container">
     <div class="section-title text-center">
-      <h2>Contact Form</h2>
+      <h2>@lang('home.contact')</h2>
       <hr>
     </div>
     <div class="col-md-10 col-md-offset-1">
       <form name="sentMessage" id="contactForm" novalidate action="{{route('contact_us')}}" method="post">
         {{csrf_field()}}
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row" >
+          <div class="col-md-6" style="float: {{App::isLocale('ar')?'right':'left'}};">
             <div class="form-group">
-              <input type="text" id="name" class="form-control" placeholder="Name" name="name" required="required">
+              <input type="text" id="name" class="form-control" placeholder="@lang('home.name')" name="name" required="required">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="required">
+              <input type="email" id="email" name="email" class="form-control" placeholder="@lang('home.email')" required="required">
               <p class="help-block text-danger"></p>
             </div>
           </div>
@@ -213,17 +220,17 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <input type="text" id="subject" class="form-control" placeholder="Subject" name="subject" required="required">
+              <input type="text" id="subject" class="form-control" placeholder="@lang('home.subject')" name="subject" required="required">
               <p class="help-block text-danger"></p>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+          <textarea name="message" id="message" class="form-control" rows="4" placeholder="@lang('home.message')" required></textarea>
           <p class="help-block text-danger"></p>
         </div>
         <div id="success"></div>
-        <button type="submit" class="btn btn-custom btn-lg">Send Message</button>
+        <button type="submit" class="btn btn-custom btn-lg">@lang('home.send_message')</button>
       </form>
     </div>
   </div>
@@ -231,14 +238,14 @@
 <div id="footer">
   <div class="container text-center">
     <div class="col-md-6">
-      <h3>Address</h3>
+      <h3>@lang('home.address')</h3>
       <div class="contact-item">
-        <p>Palestine.Gaza</p>
-        <p>Al-Wehda street</p>
+        <p>@lang('home.city')</p>
+        <p>@lang('home.street')</p>
       </div>
     </div>
     <div class="col-md-6">
-      <h3>Contact Info</h3>
+      <h3>@lang('home.contact_info')</h3>
       <div class="contact-item">
         <p>Phone: 08 286 1991</p>
         <p>Email: info@flashtech-it.com
@@ -259,8 +266,8 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
-<script type="text/javascript" src="js/bootstrap.js"></script> 
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/SmoothScroll.js"></script>
 <script type="text/javascript" src="js/nivo-lightbox.js"></script>
 <script type="text/javascript" src="js/jquery.isotope.js"></script>

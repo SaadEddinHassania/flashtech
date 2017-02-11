@@ -194,7 +194,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	margin-bottom: 10px;
 }
 .intro span {
-	color: #a7c44c;
+	color: darkorange;
 	font-weight: 600;
 }
 .intro p {
@@ -256,7 +256,7 @@ header .intro-text {
 }
 #news img {
 	width: 300px;
-	box-shadow: 15px 0 #a7c44c;
+	box-shadow: 15px 0 darkorange;
 }
 #news h3 {
 	padding: 10px 0;
