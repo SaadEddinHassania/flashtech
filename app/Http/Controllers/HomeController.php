@@ -41,6 +41,7 @@ class HomeController extends Controller
             'app_secret' => $appSecret,
             'default_graph_version' => 'v2.8',
             'default_access_token' => $appID . '|' . $appSecret, // optional
+//            'default_access_token' => 'EAADnD1kT9UABAGAVrGDENTpJPXIzU6CcOBfDvdMr08U7cQvW0aZC61uuTTy3gfQP7BOk3ItL0qPgHzSZCFf9cs94CgBmwrJJnfrKjYhpZBdsfJn2m1PYm7ZADX2E9RelxF6Fx0TaomOxsD99vVJFEaZBfpWDbeOZAsMxQoCQUAzktHZBN1Ilzs8tgHxXPnauhcZD', // optional
         ]);
         try {
             // Requires the "read_stream" permission

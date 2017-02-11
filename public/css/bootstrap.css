@@ -2513,6 +2513,7 @@ input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   line-height: normal;
+  display: none;
 }
 input[type="file"] {
   display: block;
@@ -4184,6 +4185,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand > img {
   display: block;
+  width: 545px;
+  height: 48px;
+  padding-left: 0px;
 }
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
@@ -4626,7 +4630,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 1.42857143;
   color: #337ab7;
   text-decoration: none;
-  background-color: #fff;
+  background-color: transparent;
   border: 1px solid #ddd;
 }
 .pagination > li:first-child > a,
@@ -4657,8 +4661,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   z-index: 2;
   color: #fff;
   cursor: default;
-  background-color: #337ab7;
-  border-color: #337ab7;
+  background-color: #ff8c00;
+  border-color: #ff8c00;
 }
 .pagination > .disabled > span,
 .pagination > .disabled > span:hover,
@@ -4668,7 +4672,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > .disabled > a:focus {
   color: #777;
   cursor: not-allowed;
-  background-color: #fff;
+  background-color: transparent;
   border-color: #ddd;
 }
 .pagination-lg > li > a,
