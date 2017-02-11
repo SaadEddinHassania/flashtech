@@ -1,4 +1,72 @@
+getSubCats = function ($val){
+    $.get(window.location.origin+'/sub_categories/'+$val
+        ,function(data){
+            $('.sub-type').html(data);
+            subCatFun();
+            $('.sub-cat a:first').click();
+        })
+};
+setProducts = function (data){
+    $('.products').parent().html(data);
+    $('.product a').nivoLightbox({
+        effect: 'slideDown',
+        keyboardNav: true,
+    });
+    var $container = $('.products');
+    if(!$container.hasClass('isotope')){
+        $container.isotope({
+            filter: '*',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+    }
+    else {
+        $container.isotope('destroy');
+        $container.isotope({
+            filter: '*',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+    }
+    $("ul.pagination a").on('click',function (evt){getPage ($(this).data('url'))});
+};
 
+subCatFun = function (){
+    $('.sub-cat a').click(function() {
+        $('.sub-cat .active').removeClass('active');
+        $(this).addClass('active');
+        var id = $(this).data('id');
+        getProducts(id);
+        // var selector = $(this).attr('data-filter');
+        // $container.isotope({
+        //     filter: selector,
+        //     animationOptions: {
+        //         duration: 750,
+        //         easing: 'linear',
+        //         queue: false
+        //     }
+        // });
+        return false;
+    });
+};
+getProducts = function ($val){
+    $.get(window.location.origin+'/category_products/'+$val
+        ,function(data){
+        setProducts(data);
+        })
+};
+
+getPage = function ($val){
+    $.get($val,function(data){
+            setProducts(data);
+        })
+};
 function main() {
 
 (function () {
@@ -16,8 +84,6 @@ function main() {
           }
         }
       });
-
-	
     // Show Menu on Book
     $(window).bind('scroll', function() {
         var navHeight = $(window).height() - 500;
@@ -44,7 +110,7 @@ function main() {
 	
   	// Portfolio isotope filter
     $(window).load(function() {
-        var $container = $('.portfolio-items');
+        var $container = $('.products');
         $container.isotope({
             filter: '*',
             animationOptions: {
@@ -56,22 +122,27 @@ function main() {
         $('.cat a').click(function() {
             $('.cat .active').removeClass('active');
             $(this).addClass('active');
-            var selector = $(this).attr('data-filter');
-            $container.isotope({
-                filter: selector,
-                animationOptions: {
-                    duration: 750,
-                    easing: 'linear',
-                    queue: false
-                }
-            });
+            var catId = $(this).attr('data-id');
+            getSubCats(catId);
+            // $('.sub-cat').firstChild.click();
+            // var selector = $(this).attr('data-filter');
+            // $container.isotope({
+            //     filter: selector,
+            //     animationOptions: {
+            //         duration: 750,
+            //         easing: 'linear',
+            //         queue: false
+            //     }
+            // });
             return false;
         });
+        subCatFun();
+        $("ul.pagination a").on('click',function (evt){getPage ($(this).data('url'))});
 
     });
 	
     // Nivo Lightbox 
-    $('.portfolio-item a').nivoLightbox({
+    $('.product a').nivoLightbox({
             effect: 'slideDown',  
             keyboardNav: true,                            
         });

@@ -18,18 +18,17 @@ class HomeController extends Controller
     public function index()
     {
         $mainCategories = Category::with('children')->where('parent_id', '=', null)->get();
-        $products = [];
-        if ($mainCategories->first()) {
-            $cat = $mainCategories->first();
 
-            $ids = $cat->products()->pluck('id');
-            $ids = $ids->merge($cat->allProducts()->pluck('products.id'));
-            $products = Product::whereIn('id', $ids)->paginate(6);
-        }
         $news = News::orderBy('id', 'desc')->take(3)->get();
 
         $feeds = $this->getFacebookFeeds();
-        return view('home', compact('mainCategories', 'products', 'news', 'feeds'));
+        $subCategories = Category::where('parent_id',!null)->get();
+        $id = 0;
+        $viewSub = view('partials.categories',compact('id','subCategories'));
+        $products = Product::paginate(9);
+        $products->setPath('category_products/'.$id);
+        $viewProducts = view('partials.products',compact('products'));
+        return view('home', compact('mainCategories', 'news', 'viewSub','viewProducts','feeds'));
     }
 
     public function getFacebookFeeds()
@@ -72,16 +71,22 @@ class HomeController extends Controller
 
     public function getCategoryProducts(Request $request, $id)
     {
-        $cat = Category::find($id);
-//        $products='';
+        if($id == 0) {
+            $products = Product::paginate(9);
+        }else {
+            $cat = Category::find($id);
 
-        if ($cat->parent != null) {
-            $products = $cat->products()->paginate(6);
-        } else {
-            $ids = $cat->products()->pluck('id');
-            $ids = $ids->merge($cat->allProducts()->pluck('products.id'));
-            $products = Product::whereIn('id', $ids)->paginate(6);
+            if ($cat->parent != null) {
+                $products = $cat->products()->paginate(9);
+            } else {
+                $ids = $cat->products()->pluck('id');
+                $ids = $ids->merge($cat->allProducts()->pluck('products.id'));
+                $products = Product::whereIn('id', $ids)->paginate(9);
+            }
         }
+
+        $products->setPath('category_products/'.$id);
+
         if ($request->ajax()) {
             return Response::json(view('partials.products', compact('products'))->render());
         }
@@ -90,7 +95,12 @@ class HomeController extends Controller
 
     public function getSubCategories(Request $request, $id)
     {
-        $subCategories = Category::find($id)->children;
+        if($id == 0){
+            $subCategories = Category::where('parent_id',!null)->get();
+        }else {
+            $subCategories = Category::find($id)->children;
+        }
+
         if ($request->ajax()) {
             return Response::json(view('partials.categories', compact('id', 'subCategories'))->render());
         }

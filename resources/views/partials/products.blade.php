@@ -1,24 +1,21 @@
-<section id="section-1" class="content-current">
-    <div class="typography">
-        <div  id="gallery" class="gallery">
-            <div class="gallery-grids-row">
-                @foreach($products as $product)
-                    <div class="col-md-4 gallery-grid">
-                        <div class="wpf-demo-4">
-                            <a href="{{Voyager::image($product->image)}}" class="jzBoxLink item-hover" title="{{$product->name}}">
-                                <img src="{{Voyager::image($product->image)}}" alt=" " class="img-responsive" />
-                                <div class="view-caption">
-                                    <p><a data-toggle="modal" data-id="{{$product->id}}" data-target="#fill">fill screen</a></p>
-                                </div>
-                            </a>
-                        </div>
+<div class="products">
+@foreach($products as $product)
+    <?php
+    $image = Voyager::image($product->image);
+    $extension_pos = strrpos($image, '.'); // find position of the last dot, so where the extension starts
+    $thumb = substr($image, 0, $extension_pos) . '-small' . substr($image, $extension_pos);
+    ?>
+    <div class="selector col-sm-6 col-md-4 col-lg-4 {{$product->category->name}}">
+        <div class="product">
+            <div class="hover-bg"><a href="{{$image}}" title="{{$product->name}}"
+                                     data-lightbox-gallery="gallery1">
+                    <div class="hover-text">
+                        <h4>{{$product->name}}</h4>
                     </div>
-                @endforeach
-                <div class="clearfix"> </div>
-                {{ $products->links('partials.paginator') }}
-                <div class="clearfix"> </div>
-            </div>
-            <script src="js/jzBox.js"></script>
+
+                    <img src="{{$thumb}}" class="img-responsive" alt="{{$product->name}}"> </a></div>
         </div>
     </div>
-</section>
+@endforeach
+</div>
+{{$products->links('partials.paginator')}}
