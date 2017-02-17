@@ -7,6 +7,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+
+  <!------- icon ---------- -->
+  <link rel="icon" href="images/icon.png">
 <!-- Favicons
     ================================================== -->
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -15,12 +18,20 @@
 <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
 
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+  @if(App::isLocale('en'))
+    <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+  @else
+    <link rel="stylesheet" type="text/css"  href="css/bootstrap-ar.css">
+  @endif
 <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
 
 <!-- Stylesheet
     ================================================== -->
+  @if(App::isLocale('ar'))
+<link rel="stylesheet" type="text/css"  href="css/style-ar.css">
+  @else
 <link rel="stylesheet" type="text/css"  href="css/style.css">
+    @endif
 <link rel="stylesheet" type="text/css" href="css/nivo-lightbox/nivo-lightbox.css">
 <link rel="stylesheet" type="text/css" href="css/nivo-lightbox/default.css">
 <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
@@ -32,9 +43,16 @@
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <![endif]-->
+
+  <link rel="stylesheet" href="/lib/w3.css">
 </head>
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" dir="{{App::isLocale('ar')?'rtl':'ltr'}}">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <!-- Navigation
     ==========================================-->
 <nav id="menu" class="navbar navbar-default navbar-fixed-top">
@@ -48,30 +66,59 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+          <a href="/{{App::isLocale('ar')?'en':'ar'}}" class="page-lang">{{App::isLocale('ar')?'English':'عربي'}}</a>
+          <li><a href="#home" class="page-scroll">Home</a></li>
           <li><a href="#about" class="page-scroll">@lang('home.about')</a></li>
+          <li><a href="#work" class="page-scroll">Work</a></li>
           <li><a href="#news" class="page-scroll">@lang('home.news')</a></li>
           <li><a href="#products" class="page-scroll">@lang('home.products')</a></li>
           <li><a href="#call-reservation" class="page-scroll">@lang('home.contacts')</a></li>
-
       </ul>
     </div>
+
     <!-- /.navbar-collapse -->
   </div>
 </nav>
 <!-- Header -->
-<header id="header">
-  <div class="intro">
-    <div class="overlay">
-      <div class="container">
-        <div class="row">
-          <div class="intro-text">
-            <a href="#about" class="btn btn-custom btn-lg page-scroll">Discover Story</a>
+<div id="home">
+      <div class="slider">
+        <br>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img src="{{Voyager::image(Voyager::setting('slider1'))}}" alt="Chania" >
+            </div>
+
+            <div class="item">
+              <img src="{{Voyager::image(Voyager::setting('slider2'))}}" alt="Chania" >
+            </div>
+
+            <div class="item">
+              <img src="{{Voyager::image(Voyager::setting('slider3'))}}" alt="Flower" >
+            </div>
+
           </div>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
-    </div>
-  </div>
-</header>
+</div>
 <!-- About Section -->
 <div id="about">
   <div class="container">
@@ -88,6 +135,90 @@
             <p>{{Voyager::setting('about_us_disc')}}</p>
             @endif
           </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="work">
+  <div class="section-title text-center center">
+    <div class="overlay">
+      <h2>Our Work</h2>
+      <hr>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12" >
+        <div class="work-section">
+          <h2 class="work-section-title">Our Work</h2>
+          <hr>
+          @if(App::isLocale('ar'))
+            @foreach($news as $new)
+              <div class="work-item" >
+                <div class="work-item-name"> {{$new->translations()->where('key','title')->first()?$new->translations()->where('key','title')->first()->value:$new->title}} </div>
+                <div class="work-item-description">{{$new->translations()->where('key','details')->first()?$new->translations()->where('key','details')->first()->value:$new->details}} </div>
+                <div class="work-item-description col-md-8">
+                  <a href="#" data-toggle="modal" data-target="#myModal"><span>المزيد</span></a>
+                </div>
+              </div>
+            @endforeach
+          @else
+            @foreach($news as $new)
+              <div class="work-item">
+                <div class="work-item-name"> {{$new->title}} </div>
+                <div class="work-item-description"> {{$new->details}} </div>
+                <div class="work-item-description col-md-8">
+                  <a href="#" data-toggle="modal" data-target="#myModal"><span>More</span></a>
+                </div>
+              </div>
+            @endforeach
+          @endif
+
+          <div class="modal bnr-modal fade" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body modal-spa">
+                  <h4>Blanditiis deleniti</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. </p>
+                  <div class="slider">
+                    <img class="mySlide" src="img/about.jpg">
+                    <img class="mySlide" src="img/intro-bg.jpg">
+                    <img class="mySlide" src="img/about.jpg">
+                    <img class="mySlide" src="img/intro-bg.jpg">
+
+                    <a class="leftArrow" onclick="plusDivs(-1)">&#10094;</a>
+                    <a class="rightArrow" onclick="plusDivs(1)">&#10095;</a>
+                  </div>
+
+                  <script>
+                      var slideIndex = 1;
+                      showDivs(slideIndex);
+
+                      function plusDivs(n) {
+                          showDivs(slideIndex += n);
+                      }
+
+                      function showDivs(n) {
+                          var i;
+                          var x = document.getElementsByClassName("mySlide");
+                          if (n > x.length) {slideIndex = 1}
+                          if (n < 1) {slideIndex = x.length}
+                          for (i = 0; i < x.length; i++) {
+                              x[i].style.display = "none";
+                          }
+                          x[slideIndex-1].style.display = "block";
+                      }
+                  </script>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -109,8 +240,8 @@
           @if(App::isLocale('ar'))
             @foreach($news as $new)
               <div class="news-item" >
-                <div class="news-item-name"> {{$new->translations()->where('key','title')->first()->value}} </div>
-                <div class="news-item-description"> {{$new->translations()->where('key','details')->first()->value}} </div>
+                <div class="news-item-name"> {{$new->translations()->where('key','title')->first()?$new->translations()->where('key','title')->first()->value:$new->title}} </div>
+                <div class="news-item-description">{{$new->translations()->where('key','details')->first()?$new->translations()->where('key','details')->first()->value:$new->details}} </div>
               </div>
             @endforeach
           @else
@@ -125,18 +256,30 @@
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="news-section">
+          @if(App::isLocale('en'))
           <h2 class="news-section-title">Facebook Posts</h2>
+          @else
+            <h2 class="news-section-title">منشورات الفيس بوك</h2>
+          @endif
           <hr>
           @foreach($feeds as $feed)
-          <div class="news-item" style="height: 80px;">
+          <div class="news-item row">
             @if(isset($feed->picture))
-              <img src="{{$feed->picture}}" class="img-responsive" style="float: left; width: 80px;">
+              <div class="col-md-4">
+                <img src="{{$feed->picture}}" class="img-responsive" style=" width: 80px;">
+              </div>
             @endif
               @if(isset($feed->story))
 
             <div class="news-item-name"> {{$feed->story}} </div>
               @endif
-            <div class="news-item-description"> {{@$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></div>
+            <div class="news-item-description col-md-8">
+              @if(App::isLocale('en'))
+              <p> {{@$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">More</a></p>
+                @else
+                <p> {{@$feed->message}} <a target="_blank" href="https://facebook.com/{{$feed->id}}">المزيد</a></p>
+              @endif
+            </div>
           </div>
           @endforeach
         </div>
@@ -236,20 +379,23 @@
   </div>
 </div>
 <div id="footer">
-  <div class="container text-center">
+  <div class="container text-center row">
     <div class="col-md-6">
       <h3>@lang('home.address')</h3>
       <div class="contact-item">
         <p>@lang('home.city')</p>
-        <p>@lang('home.street')</p>
+        @if(App::isLocale('en'))
+        <p>{{Voyager::setting('address-en')}}</p>
+          @else
+          <p>{{Voyager::setting('address-ar')}}</p>
+          @endif
       </div>
     </div>
     <div class="col-md-6">
       <h3>@lang('home.contact_info')</h3>
       <div class="contact-item">
-        <p>Phone: 08 286 1991</p>
-        <p>Email: info@flashtech-it.com
-        </p>
+        <p>@lang('home.phone') : {{Voyager::setting('phone')}}  </p>
+        <p>@lang('home.email') : {{Voyager::setting('email')}}</p>
       </div>
     </div>
   </div>
@@ -257,9 +403,9 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="social">
         <ul>
-          <li><a href="https://www.facebook.com/flashtechco/"><i class="fa fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="{{Voyager::setting('facebook')}}"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="{{Voyager::setting('twitter')}}"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="{{Voyager::setting('google-plus')}}"><i class="fa fa-google-plus"></i></a></li>
         </ul>
       </div>
       <p>&copy; 2017 Flash Tech. All rights reserved.</p>

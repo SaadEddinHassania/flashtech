@@ -16,6 +16,7 @@ setProducts = function (data){
     if(!$container.hasClass('isotope')){
         $container.isotope({
             filter: '*',
+            transformsEnabled: false,
             animationOptions: {
                 duration: 750,
                 easing: 'linear',
@@ -27,6 +28,7 @@ setProducts = function (data){
         $container.isotope('destroy');
         $container.isotope({
             filter: '*',
+            transformsEnabled: false,
             animationOptions: {
                 duration: 750,
                 easing: 'linear',
@@ -111,8 +113,14 @@ function main() {
   	// Portfolio isotope filter
     $(window).load(function() {
         var $container = $('.products');
+        if($container.attr('dir') == 'rtl') {
+            $.Isotope.prototype._positionAbs = function (x, y) {
+                return {right: x, top: y};
+            };
+        }
         $container.isotope({
             filter: '*',
+            transformsEnabled: false,
             animationOptions: {
                 duration: 750,
                 easing: 'linear',

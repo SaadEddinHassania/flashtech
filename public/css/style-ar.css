@@ -8,6 +8,12 @@ body, html {
 	width: 100% !important;
 	height: 100% !important;
 }
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+	width: 100%;
+	margin: auto;
+	height: 670px;
+}
 h2 {
 	margin: 0 0 20px 0;
 	font-weight: 500;
@@ -16,10 +22,16 @@ h2 {
 	text-transform: uppercase;
 	text-align: center;
 }
+.page-lang {
+	float: right;
+}
 h3 {
 	font-size: 22px;
 	font-weight: 500;
 	color: #333;
+}
+.col-md-4 img{
+	float: right;
 }
 h4 {
 	font-size: 24px;
@@ -36,7 +48,7 @@ p {
 	font-size: 18px;
 }
 .news-item-description p{
-	padding-left: 8em;
+	padding-right: 2em;
 }
 p.intro {
 	margin: 12px 0 0;
@@ -189,12 +201,6 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	background-size: cover;
 	-o-background-size: cover;
 }
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-	width: 100%;
-	margin: auto;
-	height: 670px;
-}
 
 .intro .overlay {
 	background: rgba(0,0,0,0.4);
@@ -217,7 +223,6 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	font-weight: 300;
 	margin-top: 10px;
 	margin-bottom: 40px;
-	text-align: center;
 }
 header .intro-text {
 	padding-top: 250px;
@@ -227,9 +232,6 @@ header .intro-text {
 /* About Section */
 #about {
 	padding: 120px 0;
-}
-.col-md-4 img{
-	float: left;
 }
 #about h3 {
 	font-size: 20px;
@@ -294,12 +296,45 @@ header .intro-text {
 	margin: 20px 0;
 	text-align: center;
 }
+#news .news-item {
+	margin: 35px 0;
+	font-size: 18px;
+}
+#news .news-item-image {
+	width: 150px;
+	height: 90px;
+	float: right;
+	margin-left: 5px;
+}
+#news .news-item-name {
+	font-weight: 600;
+	font-size: 17px;
+	color: #555;
+	border-bottom: 1px dotted rgb(213, 213, 213);
+	text-align: right;
+}
+#news .news-item-description {
+	font-style: italic;
+	font-size: 15px;
+	padding-left: 0em;
+	width: 100%;
+	text-align: right;
+
+}
+#news .news-item-price {
+	float: right;
+	font-weight: 600;
+	color: #555;
+	margin-top: -26px;
+}
+
 #work .work-section hr {
 	margin: 0 auto;
+
 }
 #work .work-section {
 	margin: 0 194px 80px;
-
+	text-align: right;
 }
 #work .work-section-title {
 	font-size: 26px;
@@ -352,36 +387,6 @@ header .intro-text {
 	font-size: 2em;
 	padding-right: 27px;
 }
-
-#news .news-item {
-	margin: 35px 0;
-	font-size: 18px;
-}
-#news .news-item-image {
-	width: 150px;
-	height: 90px;
-	float: right;
-	margin-left: 5px;
-}
-#news .news-item-name {
-	font-weight: 600;
-	font-size: 17px;
-	color: #555;
-	border-bottom: 1px dotted rgb(213, 213, 213);
-}
-#news .news-item-description {
-	font-style: italic;
-	font-size: 15px;
-	padding-left: 0em;
-	width: 100%;
-
-}
-#news .news-item-price {
-	float: right;
-	font-weight: 600;
-	color: #555;
-	margin-top: -26px;
-}
 /* Products Section */
 #products {
 	padding: 0 0 120px 0;
@@ -412,6 +417,7 @@ ol.type li {
 	display: inline-block;
 	margin: 0 10px;
 	padding: 20px 0;
+	float: right;
 }
 ol.type li a {
 	color: #999;
@@ -435,6 +441,7 @@ ol.type li a:hover {
 
 ol.sub-type li {
 	display: inline-block;
+	float: right;
 }
 ol.sub-type li a {
 	color: #999;
@@ -495,7 +502,7 @@ ol.sub-type li a:hover {
 	position: relative;
 }
 .hover-text p{
-	padding-left: 20px;
+	padding-right: 20px;
 	padding-top: 5px;
 	font-size: 17px;
 	letter-spacing: 0.5px;
@@ -649,7 +656,7 @@ label {
 	font-size: 15px;
 	font-weight: 400;
 	font-family: 'Cairo', sans-serif;
-	float: left;
+	float: right;
 }
 #contact .form-control {
 	display: block;
