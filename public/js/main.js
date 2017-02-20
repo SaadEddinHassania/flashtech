@@ -6,6 +6,24 @@ getSubCats = function ($val) {
             $('.sub-cat a:first').click();
         })
 };
+setProjects = function (data) {
+    $('.work-section').html(data);
+
+    $('.show-project').on('click', function (evt) {
+        $.get(window.location.href + '/project/' + $(this).data('id')
+            , function (data) {
+                $('.modal').html(data);
+            })
+    });
+
+    $("ul.pagination a").on('click', function (evt) {
+        if ($(this).parents('.work-section').length > 0) {
+            getProjectsPage($(this).data('url'))
+        } else {
+            getPage($(this).data('url'))
+        }
+    });
+};
 setProducts = function (data) {
     $('.products').parent().html(data);
     $('.product a').nivoLightbox({
@@ -37,7 +55,11 @@ setProducts = function (data) {
         });
     }
     $("ul.pagination a").on('click', function (evt) {
-        getPage($(this).data('url'))
+        if ($(this).parents('.work-section').length > 0) {
+            getProjectsPage($(this).data('url'))
+        } else {
+            getPage($(this).data('url'))
+        }
     });
 };
 
@@ -69,6 +91,12 @@ getProducts = function ($val) {
 getPage = function ($val) {
     $.get($val, function (data) {
         setProducts(data);
+    })
+};
+
+getProjectsPage = function ($val) {
+    $.get($val, function (data) {
+        setProjects(data);
     })
 };
 function main() {
@@ -148,9 +176,19 @@ function main() {
             });
             subCatFun();
             $("ul.pagination a").on('click', function (evt) {
-                getPage($(this).data('url'))
+                if ($(this).parents('.work-section').length > 0) {
+                    getProjectsPage($(this).data('url'))
+                } else {
+                    getPage($(this).data('url'))
+                }
             });
 
+            $('.show-project').on('click', function (evt) {
+                $.get(window.location.href + '/project/' + $(this).data('id')
+                    , function (data) {
+                        $('.modal').html(data);
+                    })
+            });
         });
 
         // Nivo Lightbox
@@ -159,17 +197,6 @@ function main() {
             keyboardNav: true,
         });
 
-        $('.show-project').on('click', function (evt) {
-            $.get(window.location.href + '/project/' + $(this).data('id')
-                , function (data) {
-                    $('.modal').html(data);
-                })
-        });
-        $('.work-section .pagination a').on('click', function (evt) {
-            evt.preventDefault();
-            console.log($(this).attr('href')+"#work");
-            window.location.href = $(this).attr('href')+"#work";
-        });
 
     }());
 

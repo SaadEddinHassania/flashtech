@@ -20,7 +20,9 @@ class HomeController extends Controller
     {
         $mainCategories = Category::with('children')->where('parent_id', '=', null)->get();
 
-        $projects = App\Project::orderBy('updated_at')->paginate(2);
+        $projects = App\Project::orderBy('updated_at')->paginate(5);
+        $projects->setPath($request->segment(1).'/projects');
+
         $news = News::orderBy('id', 'desc')->take(3)->get();
 
         $feeds = $this->getFacebookFeeds();
@@ -114,6 +116,18 @@ class HomeController extends Controller
     {
         $project = Project::findOrFail($id);
         return view('partials.project', compact('project'));
+    }
+
+    public function getProjects(Request $request)
+    {
+        $projects = App\Project::orderBy('updated_at')->paginate(5);
+
+        $projects->setPath($request->segment(1).'/projects');
+
+        if ($request->ajax()) {
+            return Response::json(view('partials.projects', compact('projects'))->render());
+        }
+        return view('partials.projects', compact('projects'));
     }
 
     public function postContactUs(Request $request)

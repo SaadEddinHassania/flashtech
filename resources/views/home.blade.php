@@ -172,10 +172,11 @@
               </div>
             @endforeach
           @endif
-          {{$projects->links()}}
+          {{$projects->links('partials.paginator')}}
           <div class="modal bnr-modal fade" id="myModal" tabindex="-1" role="dialog">
 
           </div>
+
         </div>
       </div>
     </div>
