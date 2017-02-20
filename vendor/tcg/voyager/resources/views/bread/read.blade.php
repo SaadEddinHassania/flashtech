@@ -28,6 +28,15 @@
                             @if($row->type == "image")
                                 <img style="max-width:640px"
                                      src="<?= Voyager::image($dataTypeContent->{$row->field}) ?>">
+                            @elseif($row->type == 'multiple_image' && is_array(json_decode($dataTypeContent->{$row->field})) )
+                                @foreach(json_decode($dataTypeContent->{$row->field}) as $image)
+                                    <img src="
+                                                    @if( strpos($image, 'http://') === false && strpos($image, 'https://') === false)
+                                    {{ Voyager::image( $image ) }}
+                                    @else
+                                    {{ $image }}
+                                    @endif" style="width:200px">
+                                @endforeach
                             @else
                                 <p><?= $dataTypeContent->{$row->field} ?></p>
                             @endif

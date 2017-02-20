@@ -69,7 +69,7 @@
           <a href="/{{App::isLocale('ar')?'en':'ar'}}" class="page-lang">{{App::isLocale('ar')?'English':'عربي'}}</a>
           <li><a href="#home" class="page-scroll">Home</a></li>
           <li><a href="#about" class="page-scroll">@lang('home.about')</a></li>
-          <li><a href="#work" class="page-scroll">Work</a></li>
+          <li><a href="#work" class="page-scroll">@lang('home.our_work')</a></li>
           <li><a href="#news" class="page-scroll">@lang('home.news')</a></li>
           <li><a href="#products" class="page-scroll">@lang('home.products')</a></li>
           <li><a href="#call-reservation" class="page-scroll">@lang('home.contacts')</a></li>
@@ -143,7 +143,7 @@
 <div id="work">
   <div class="section-title text-center center">
     <div class="overlay">
-      <h2>Our Work</h2>
+      <h2>@lang('home.our_work')</h2>
       <hr>
     </div>
   </div>
@@ -151,72 +151,30 @@
     <div class="row">
       <div class="col-xs-12" >
         <div class="work-section">
-          <h2 class="work-section-title">Our Work</h2>
-          <hr>
           @if(App::isLocale('ar'))
-            @foreach($news as $new)
+            @foreach($projects as $project)
               <div class="work-item" >
-                <div class="work-item-name"> {{$new->translations()->where('key','title')->first()?$new->translations()->where('key','title')->first()->value:$new->title}} </div>
-                <div class="work-item-description">{{$new->translations()->where('key','details')->first()?$new->translations()->where('key','details')->first()->value:$new->details}} </div>
+                <div class="work-item-name"> {{$project->title_ar}} </div>
+                <div class="work-item-description"> {{$project->small_desc_ar}} </div>
                 <div class="work-item-description col-md-8">
-                  <a href="#" data-toggle="modal" data-target="#myModal"><span>المزيد</span></a>
+                  <a class="show-project" data-id="{{$project->id}}" href="javascript:;" data-toggle="modal" data-target="#myModal"><span>المزيد</span></a>
                 </div>
               </div>
             @endforeach
           @else
-            @foreach($news as $new)
-              <div class="work-item">
-                <div class="work-item-name"> {{$new->title}} </div>
-                <div class="work-item-description"> {{$new->details}} </div>
+            @foreach($projects as $project)
+              <div class="work-item" >
+                <div class="work-item-name"> {{$project->title}} </div>
+                <div class="work-item-description"> {{$project->small_desc}} </div>
                 <div class="work-item-description col-md-8">
-                  <a href="#" data-toggle="modal" data-target="#myModal"><span>More</span></a>
+                  <a class="show-project" data-id="{{$project->id}}" href="javascript:;" data-toggle="modal" data-target="#myModal"><span>more</span></a>
                 </div>
               </div>
             @endforeach
           @endif
-
+          {{$projects->links()}}
           <div class="modal bnr-modal fade" id="myModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body modal-spa">
-                  <h4>Blanditiis deleniti</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. </p>
-                  <div class="slider">
-                    <img class="mySlide" src="img/about.jpg">
-                    <img class="mySlide" src="img/intro-bg.jpg">
-                    <img class="mySlide" src="img/about.jpg">
-                    <img class="mySlide" src="img/intro-bg.jpg">
 
-                    <a class="leftArrow" onclick="plusDivs(-1)">&#10094;</a>
-                    <a class="rightArrow" onclick="plusDivs(1)">&#10095;</a>
-                  </div>
-
-                  <script>
-                      var slideIndex = 1;
-                      showDivs(slideIndex);
-
-                      function plusDivs(n) {
-                          showDivs(slideIndex += n);
-                      }
-
-                      function showDivs(n) {
-                          var i;
-                          var x = document.getElementsByClassName("mySlide");
-                          if (n > x.length) {slideIndex = 1}
-                          if (n < 1) {slideIndex = x.length}
-                          for (i = 0; i < x.length; i++) {
-                              x[i].style.display = "none";
-                          }
-                          x[slideIndex-1].style.display = "block";
-                      }
-                  </script>
-
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -303,7 +261,11 @@
             <ol class="type">
               <li><a href="#" data-filter="*" class="active">@lang('home.all')</a></li>
               @foreach($mainCategories as $mainCategory)
-                <li><a href="#" data-id="{{$mainCategory->id}}" >{{$mainCategory->name}}</a></li>
+                @if(App::isLocale('ar'))
+                  <li><a href="#" data-id="{{$mainCategory->id}}" >{{$mainCategory->name_ar}}</a></li>
+                @else
+                  <li><a href="#" data-id="{{$mainCategory->id}}" >{{$mainCategory->name}}</a></li>
+                @endif
               @endforeach
             </ol>
           </li>

@@ -60,6 +60,11 @@
                                         <input type="text" class="form-control" name="{{ $row->field }}"
                                                placeholder="{{ $row->display_name }}"
                                                value="@if(isset($dataTypeContent->{$row->field})){{ old($row->field, $dataTypeContent->{$row->field}) }}@else{{old($row->field)}}@endif">
+                                    @elseif($row->type == "date")
+                                            <input type="date" class="form-control" name="{{ $row->field }}"
+                                                   placeholder="{{ $row->display_name }}"
+                                                   value="@if(isset($dataTypeContent->{$row->field})){{ old($row->field, $dataTypeContent->{$row->field}) }}@else{{old($row->field)}}@endif">
+
                                     @elseif($row->type == "password")
                                         @if(isset($dataTypeContent->{$row->field}))
                                             <br>
@@ -72,14 +77,19 @@
                                     @elseif($row->type == "rich_text_box")
                                         <textarea class="form-control richTextBox"
                                                   name="{{ $row->field }}">@if(isset($dataTypeContent->{$row->field})){{ old($row->field, $dataTypeContent->{$row->field}) }}@else{{old($row->field)}}@endif</textarea>
-                                    @elseif($row->type == "image" || $row->type == "file")
+                                    @elseif($row->type == "image" || $row->type == "file"|| $row->type == "multiple_image")
                                         @if($row->type == "image" && isset($dataTypeContent->{$row->field}))
                                             <img src="{{ Voyager::image( $dataTypeContent->{$row->field} ) }}"
                                                  style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
+                                        @elseif($row->type == "multiple_image" && isset($dataTypeContent->{$row->field}) && is_array(json_decode($dataTypeContent->{$row->field})))
+                                            @foreach(json_decode($dataTypeContent->{$row->field}) as $image)
+                                                <img src="{{ Voyager::image( $image ) }}"
+                                                     style="width:200px; height:auto; clear:both; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
+                                            @endforeach
                                         @elseif($row->type == "file" && isset($dataTypeContent->{$row->field}))
                                             <div class="fileType">{{ $dataTypeContent->{$row->field} }}</div>
                                         @endif
-                                        <input type="file" name="{{ $row->field }}">
+                                        <input type="file" name="{{ $row->field }}[]" {{$row->type == "multiple_image"?'multiple':''}}>
                                     @elseif($row->type == "select_dropdown")
                                         <?php $options = json_decode($row->details); ?>
                                         @if(isset($options->relationship))

@@ -24,4 +24,5 @@ return [
     'accessories' => 'إكسسوارات',
     'phone' => 'تلفون',
     'email' => 'الإيميل',
+    'our_work' => 'أعمالنا',
 ];

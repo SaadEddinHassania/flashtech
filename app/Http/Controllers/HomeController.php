@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Product;
+use App\Project;
 use Facebook\Facebook;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class HomeController extends Controller
     {
         $mainCategories = Category::with('children')->where('parent_id', '=', null)->get();
 
+        $projects = App\Project::orderBy('updated_at')->paginate(2);
         $news = News::orderBy('id', 'desc')->take(3)->get();
 
         $feeds = $this->getFacebookFeeds();
@@ -28,7 +30,7 @@ class HomeController extends Controller
         $products = Product::paginate(9);
         $products->setPath($request->segment(1).'/category_products/'.$id);
         $viewProducts = view('partials.products',compact('products'));
-        return view('home', compact('mainCategories', 'news', 'viewSub','viewProducts','feeds'));
+        return view('home', compact('mainCategories', 'news', 'viewSub','viewProducts','feeds','projects'));
     }
 
     public function getFacebookFeeds()
@@ -108,6 +110,11 @@ class HomeController extends Controller
         return view('partials.categories', compact('id', 'subCategories'));
     }
 
+    public function getProject(Request $request, $id)
+    {
+        $project = Project::findOrFail($id);
+        return view('partials.project', compact('project'));
+    }
 
     public function postContactUs(Request $request)
     {

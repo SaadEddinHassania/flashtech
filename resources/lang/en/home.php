@@ -24,4 +24,5 @@ return [
     'accessories' => 'Accessories',
     'phone' => 'Phone',
     'email' => 'Email',
+    'our_work' => 'Our Work',
 ];

@@ -138,6 +138,12 @@
                                                 <option value="image" @if(isset($dataRow->type) && $dataRow->type == 'image'){{ 'selected' }}@endif>
                                                     Image
                                                 </option>
+                                                <option value="multiple_image" @if(isset($dataRow->type) && $dataRow->type == 'multiple_image'){{ 'selected' }}@endif>
+                                                    Multiple Image
+                                                </option>
+                                                <option value="date" @if(isset($dataRow->type) && $dataRow->type == 'date'){{ 'selected' }}@endif>
+                                                    Date
+                                                </option>
                                             </select>
                                         @endif
 

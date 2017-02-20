@@ -15,6 +15,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
     Route::get('/category_products/{id}', 'HomeController@getCategoryProducts');
     Route::get('/sub_categories/{id}', 'HomeController@getSubCategories');
     Route::get('/product_modal/{id}', 'HomeController@getProductModal');
+    Route::get('/project/{id}', 'HomeController@getProject');
     Route::post('/contact_us', 'HomeController@postContactUs')->name('contact_us');
 });
 
